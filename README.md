@@ -2,6 +2,8 @@
 
 This is a lightweight static personal academic website for GitHub Pages.
 
+Public site: <https://900112.xyz/>
+
 The project is intentionally kept in its own folder:
 
 ```text
