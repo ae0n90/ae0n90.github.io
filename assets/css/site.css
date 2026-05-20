@@ -197,8 +197,8 @@ h1 {
 }
 
 .portrait {
-  width: min(100%, 360px);
-  aspect-ratio: 4 / 5;
+  width: min(100%, 420px);
+  aspect-ratio: 4 / 3;
   justify-self: end;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -502,7 +502,7 @@ h1 {
   }
 
   .portrait {
-    width: min(100%, 310px);
+    width: min(100%, 340px);
     justify-self: start;
   }
 
