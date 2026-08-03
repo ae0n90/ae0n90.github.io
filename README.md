@@ -35,6 +35,8 @@ Then open <http://localhost:8000>.
 - `publications/index.html`: selected publications
 - `teaching/index.html`: courses and advising
 - `resources/index.html`: replication and teaching resources
+- `learning/index.html`: AI-assisted topic learning hub
+- `learning/structural-estimation/`: seven-module structural estimation course
 - `cv/index.html`: CV and external profile links
 - `assets/css/site.css`: site design
 

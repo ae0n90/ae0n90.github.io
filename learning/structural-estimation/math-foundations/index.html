@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3. 数学急救包 | 结构估计入门</title>
+    <meta name="description" content="用直观实验理解结构估计需要的概率、期望、方差、分布、AR(1) 与数值优化。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/math-foundations/">
+    <link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/learning.css">
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../about/">About</a><a href="../../../research/">Research</a><a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a><a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="课程目录"><span class="course-label">Structural estimation</span><h2>结构估计入门</h2><div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a aria-current="page" data-course-nav-module="math" href="./"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a aria-current="page" data-course-nav-module="math" href="./"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 3</div>
+        <header class="course-hero"><span class="module-kicker">Module 3 · 约 55 分钟</span><h1>数学急救包</h1><p>只补后面真正会用到的概念。每个对象都回答三个问题：它是什么、为什么需要、参数变化时图形或数据会怎样。</p></header>
+
+        <section class="content-section" aria-labelledby="prob-title"><span class="section-kicker">Probability</span><h2 id="prob-title">概率：不是“下一次会怎样”，而是重复中的规律</h2>
+          <p>一枚公平硬币正面概率为 0.5，不代表每两次一定一正一反。它表示在大量可比重复中，正面比例会接近 0.5。结构模型把无法完全观察的偏好、冲击或信息写成随机变量，再由概率连接“模型”和“选择数据”。</p>
+          <div class="lab"><p class="lab-label">互动实验 1</p><h3>样本越大，频率越稳定</h3><p>先抛 10 次，再连续抛 100 次。固定随机种子让刷新后结果可复现。</p>
+            <div class="button-row"><button class="learning-button" type="button" data-flip-count="10">抛 10 次</button><button class="learning-button" type="button" data-flip-count="100">抛 100 次</button><button class="learning-button secondary" type="button" id="coin-reset">重置</button></div>
+            <div class="lab-output" id="coin-output" aria-live="polite"></div><canvas id="coin-canvas" width="760" height="260" role="img" aria-label="累计抛硬币次数与正面样本频率图"></canvas>
+          </div>
+          <div class="callout warning"><strong>术语要准确：</strong>概率不等于观察到的样本频率；大数定律说明在条件成立时，样本频率会收敛到概率。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="moments-title"><span class="section-kicker">Moments</span><h2 id="moments-title">期望、方差和矩：给分布做“摘要”</h2>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-tag">E[X]</span><h2>期望：长期平均位置</h2><p>期望是随机变量分布的理论平均。样本均值是用有限数据估计这个理论对象。</p></article>
+            <article class="concept-card"><span class="concept-tag">Var(X)</span><h2>方差：围绕均值的分散程度</h2><p>方差是平方偏差的期望；标准差与原变量同单位，更容易解释。</p></article>
+            <article class="concept-card"><span class="concept-tag">Cov(X,Y)</span><h2>协方差：两个变量一起变化</h2><p>协方差为零不等于一般意义上的独立；独立通常是更强条件。</p></article>
+            <article class="concept-card"><span class="concept-tag">Moment</span><h2>矩：一组可用于对账的特征</h2><p>均值、方差、协方差都属于矩。GMM/SMM 会比较数据矩与模型矩，但矩必须与参数有识别关系。</p></article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="distribution-title"><span class="section-kicker">Distribution</span><h2 id="distribution-title">分布：不只告诉你平均值，还告诉你各种结果有多可能</h2>
+          <p>两个村庄的平均收入可以相同，但风险结构完全不同。分布描述所有可能结果及其概率。给随机项指定正态、极值或其他分布，会改变选择概率、尾部风险和估计结果，所以分布假设是模型的一部分。</p>
+          <div class="formula-box">若 ε ~ N(0, σ²)：均值是 0，方差是 σ²，标准差是 σ。<br>写成 N(0, σ) 会让读者不清楚第二个参数代表方差还是标准差。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="ar-title"><span class="section-kicker">AR(1)</span><h2 id="ar-title">AR(1)：今天的状态会带到明天多少？</h2>
+          <div class="formula-box">yₜ = ρyₜ₋₁ + εₜ，　εₜ ~ N(0, σ²)，　|ρ| &lt; 1</div>
+          <ul><li><strong>ρ：</strong>持久性。越接近 1，冲击消退越慢。</li><li><strong>σ：</strong>每一期新冲击的标准差。</li><li><strong>长期波动：</strong>平稳 AR(1) 的标准差为 σ / √(1-ρ²)，所以 ρ 和 σ 都会影响波动。</li></ul>
+          <div class="lab"><p class="lab-label">互动实验 2</p><h3>同时改变持久性与冲击大小</h3>
+            <div class="control-row"><label for="ar-rho">ρ（持久性）</label><input id="ar-rho" type="range" min="0" max="0.96" step="0.01" value="0.75"><span class="control-value" id="ar-rho-value">0.75</span></div>
+            <div class="control-row"><label for="ar-sigma">σ（新冲击标准差）</label><input id="ar-sigma" type="range" min="0.05" max="0.7" step="0.01" value="0.28"><span class="control-value" id="ar-sigma-value">0.28</span></div>
+            <div class="lab-output" id="ar-output" aria-live="polite"></div><canvas id="ar-canvas" width="760" height="260" role="img" aria-label="给定 rho 与 sigma 的 AR1 模拟序列"></canvas>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="opt-title"><span class="section-kicker">Optimization</span><h2 id="opt-title">优化：估计通常就是寻找山顶或谷底</h2>
+          <p>MLE 寻找似然最大的参数；GMM/SMM 寻找矩距离最小的参数。电脑通常从一个初值出发，根据局部信息移动，直到满足收敛条件。</p>
+          <div class="lab"><p class="lab-label">互动实验 3</p><h3>看算法从初值走到山顶</h3><p>目标函数是 f(x)=-(x-2)²+5，最高点在 x=2。真实模型可能多峰、带边界或不光滑，因此必须检查多组初值和收敛诊断。</p>
+            <div class="button-row"><button class="learning-button" id="hill-start" type="button">开始寻找山顶</button></div><div class="lab-output" id="hill-output" aria-live="polite">点击按钮开始。</div><canvas id="hill-canvas" width="760" height="260" role="img" aria-label="目标函数曲线与优化算法迭代路径"></canvas>
+          </div>
+          <div class="callout"><strong>研究代码的最低检查：</strong>不同初值、参数边界、目标函数值、梯度或步长、迭代次数、退出代码。看到“converged”不等于找到了全局最优。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="ready-title"><span class="section-kicker">Ready check</span><h2 id="ready-title">进入估计方法前，你只需会解释这五句话</h2><ol><li>样本频率与理论概率不同，但大样本下可能收敛。</li><li>矩是分布的摘要，样本矩用来估计模型矩。</li><li>随机项的分布会决定选择概率，不是无关紧要的装饰。</li><li>AR(1) 的 ρ 与 σ 都可能影响长期波动。</li><li>优化器只是在目标函数上搜索；识别问题不能靠更强优化器解决。</li></ol></section>
+
+        <footer class="module-footer"><p>验收标准：不看公式说明 ρ、σ、矩和目标函数分别在估计中做什么。</p><button class="completion-button" type="button" data-complete-module="math" aria-pressed="false">标记本模块为已完成</button></footer><div class="module-pager"><a href="../model-building/">← 模块 2</a><a href="../estimators/">模块 4：估计方法 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../assets/js/structural-course.js"></script>
+  </body>
+</html>

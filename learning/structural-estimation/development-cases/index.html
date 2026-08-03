@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>5. 发展经济学经典案例 | 结构估计入门</title>
+    <meta name="description" content="用同一模板拆解技术采纳、PROGRESA 教育补贴、微型金融、农村迁移与风险分担四个发展经济学结构研究。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/development-cases/">
+    <link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/learning.css">
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../about/">About</a><a href="../../../research/">Research</a><a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a><a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="课程目录"><span class="course-label">Structural estimation</span><h2>结构估计入门</h2><div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a aria-current="page" data-course-nav-module="cases" href="./"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a aria-current="page" data-course-nav-module="cases" href="./"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 5</div>
+        <header class="course-hero"><span class="module-kicker">Module 5 · 约 80 分钟</span><h1>四篇发展经济学论文<br>看结构模型怎样服务政策</h1><p>不追求读懂每个算法。先用一张固定清单拆论文：政策问题、行动者、状态与选择、参数、识别、验证、反事实和最脆弱假设。</p></header>
+
+        <section class="content-section" aria-labelledby="template-title"><span class="section-kicker">Reading template</span><h2 id="template-title">先拿走这张八问清单</h2><ol><li>作者真正要比较的政策反事实是什么？</li><li>谁在做决定，选择集和时间维度是什么？</li><li>哪些状态会随时间变化，行动者知道什么？</li><li>哪些参数是偏好、技术、成本或约束？</li><li>每个参数靠数据中的什么变化识别？</li><li>估计使用似然、矩还是模拟？</li><li>模型用什么未参与估计的事实或实验结果验证？</li><li>政策结论最依赖哪个假设，替代模型会怎样？</li></ol></section>
+
+        <section class="content-section" aria-labelledby="papers-title"><span class="section-kicker">Four cases</span><h2 id="papers-title">从农业技术到农村风险分担</h2>
+          <div class="paper-grid">
+            <article class="paper-card"><span class="paper-tag">农业技术采纳</span><h2>Suri (2011)：高平均收益为何仍伴随低采纳？</h2><p>肯尼亚杂交玉米案例允许农户的技术收益和采纳成本存在相关异质性。核心不是问“杂交种平均增产多少”，而是识别边际采纳者的净收益为何接近零。</p><dl><dt>选择</dt><dd>农户是否采用杂交玉米及化肥</dd><dt>结构对象</dt><dd>异质性产量回报与采纳成本的联合分布</dd><dt>关键数据</dt><dd>农户面板、投入采纳、产量、基础设施与距离</dd><dt>政策含义</dt><dd>平均高收益不代表普遍补贴有效；供应和基础设施约束可能针对特定群体</dd><dt>学习重点</dt><dd>选择进入技术使用会改变“观察到的采用者回报”</dd></dl><p><a href="https://doi.org/10.3982/ECTA7749">论文与 DOI</a> · <a href="https://mitmgmtfaculty.mit.edu/tsuri/publications/">作者资料与教学幻灯</a></p></article>
+            <article class="paper-card"><span class="paper-tag">教育与条件现金转移</span><h2>Todd &amp; Wolpin (2006)：用实验验证动态模型</h2><p>家庭动态选择子女上学、工作与生育。作者先用政策前数据估计模型，再让模型预测 PROGRESA 的实验处理效应，最后比较替代补贴安排。</p><dl><dt>选择</dt><dd>儿童上学/工作与家庭生育决策</dd><dt>动态状态</dt><dd>年龄、受教育年限、家庭结构与收入机会</dd><dt>识别/验证</dt><dd>政策前行为用于估计；随机实验的政策后效果用于外部验证</dd><dt>反事实</dt><dd>在相近预算下改变年级和性别补贴结构</dd><dt>学习重点</dt><dd>实验既可识别，也可作为结构模型的“留出考题”</dd></dl><p><a href="https://www.aeaweb.org/articles?id=10.1257/aer.96.5.1384">AER 论文与复制材料</a></p></article>
+            <article class="paper-card"><span class="paper-tag">微型金融</span><h2>Kaboski &amp; Townsend (2011)：为何平均效果会随时间和家庭而异？</h2><p>泰国村庄基金的准实验扩张被放入一个包含信贷约束、职业/投资选择和异质家庭的结构框架，用于解释短期与长期、直接转移与信贷政策的差异。</p><dl><dt>行动者</dt><dd>面对投资机会和借贷约束的家庭</dd><dt>政策</dt><dd>村庄层面的信贷资金扩张</dd><dt>证据组合</dt><dd>准实验项目变异 + 结构化家庭决策</dd><dt>反事实</dt><dd>投资附条件信贷、直接转移与长期政策路径</dd><dt>学习重点</dt><dd>结构模型可解释处理效应异质性与动态路径，但外生性仍需单独论证</dd></dl><p><a href="https://doi.org/10.3982/ECTA7079">论文与 DOI</a> · <a href="https://economics.mit.edu/research/publications/204?page=3">MIT 论文条目</a></p></article>
+            <article class="paper-card"><span class="paper-tag">迁移与风险分担</span><h2>Morten (2019)：迁移与村庄保险为何相互影响？</h2><p>临时迁移既能提高收入、自我保险，也会改变村庄内部风险分担。若把风险分担视为固定，降低迁移成本的福利预测会偏离内生网络反应下的结果。</p><dl><dt>选择/制度</dt><dd>家庭迁移与有限承诺下的风险分担</dd><dt>动态状态</dt><dd>家庭收入冲击、迁移机会和保险关系</dd><dt>数据</dt><dd>印度 ICRISAT 农村家庭面板</dd><dt>反事实</dt><dd>降低迁移成本、改善风险分担、引入农村就业计划</dd><dt>学习重点</dt><dd>政策会改变其他制度安排时，局部反事实可能遗漏重要均衡反馈</dd></dl><p><a href="https://www.nber.org/papers/w22159">NBER 论文与已发表版本信息</a></p></article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="compare-case-title"><span class="section-kicker">Compare</span><h2 id="compare-case-title">四篇论文分别教会什么？</h2>
+          <div class="table-wrap"><table class="learning-table"><caption>发展经济学结构研究的四种用途</caption><thead><tr><th>论文</th><th>结构模型补上的关键内容</th><th>最值得追问的风险</th></tr></thead><tbody>
+            <tr><td>Suri</td><td>采纳者选择与异质净收益</td><td>异质性分布与成本代理能否被数据区分</td></tr>
+            <tr><td>Todd–Wolpin</td><td>动态教育/生育行为与替代补贴</td><td>实验外政策环境中参数与预期是否稳定</td></tr>
+            <tr><td>Kaboski–Townsend</td><td>信贷约束、投资与动态处理效应</td><td>准实验外生性与金融环境设定</td></tr>
+            <tr><td>Morten</td><td>迁移和内生风险分担的共同决定</td><td>风险分担制度与网络简化是否影响福利结论</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="practice-title"><span class="section-kicker">Do it yourself</span><h2 id="practice-title">20 分钟拆论文练习</h2><div class="content-card"><ol><li>任选一篇，只读摘要、模型概述、识别/估计、拟合和反事实图表。</li><li>用八问清单各写一句，不超过一页。</li><li>圈出最脆弱的一项假设，并写一个可执行验证：留出样本、实验效果、未用矩或替代模型。</li><li>最后用一句话判断：没有结构模型，作者最重要的政策问题还答得出来吗？</li></ol></div></section>
+
+        <footer class="module-footer"><p>验收标准：能按八问模板拆解一篇发展经济学结构论文，而不是只复述结论。</p><button class="completion-button" type="button" data-complete-module="cases" aria-pressed="false">标记本模块为已完成</button></footer><div class="module-pager"><a href="../estimators/">← 模块 4</a><a href="../hands-on/">模块 6：完整实操 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../assets/js/structural-course.js"></script>
+  </body>
+</html>

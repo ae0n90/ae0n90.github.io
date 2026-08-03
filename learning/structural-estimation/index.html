@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>结构估计入门 | AI Learning</title>
+    <meta name="description" content="面向应用经济学研究生的结构估计分页课程：直觉、模型、数学、MLE/GMM/SMM、发展经济学案例、农业机械化服务实操与学习路线。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="结构估计 | Structural Estimation">
+    <meta property="og:description" content="面向应用经济学研究生的七模块引导式课程，含发展经济学案例、交互实验与 Stata/Python 实操。">
+    <meta property="og:url" content="https://900112.xyz/learning/structural-estimation/">
+    <meta property="og:image" content="https://900112.xyz/assets/images/structural-estimation-og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../../assets/css/site.css">
+    <link rel="stylesheet" href="../../assets/css/learning.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../">Xiaoshi Zhou</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../../about/">About</a>
+        <a href="../../research/">Research</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../teaching/">Teaching</a>
+        <a href="../../resources/">Resources</a>
+        <a aria-current="page" href="../">AI Learning</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+    </header>
+
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="课程目录">
+        <span class="course-label">Structural estimation</span>
+        <h2>结构估计入门</h2>
+        <div class="course-progress">
+          <div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div>
+          <div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div>
+        </div>
+        <ol class="course-nav">
+          <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
+          <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
+          <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
+          <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
+          <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
+          <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
+          <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
+          <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+        </ol>
+      </aside>
+
+      <main class="course-main">
+        <details class="course-mobile-nav">
+          <summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary>
+          <ol class="course-nav">
+            <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
+            <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
+            <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
+            <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
+            <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
+            <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
+            <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
+            <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+          </ol>
+        </details>
+
+        <div class="breadcrumbs"><a href="../">AI Learning</a><span>/</span>结构估计入门</div>
+
+        <header class="course-hero">
+          <span class="module-kicker">Guided course · 7 modules</span>
+          <h1>结构估计<span>从“会回归”到“会建模、会估计、会做政策反事实”</span></h1>
+          <p>
+            这不是结构估计百科全书，也不承诺八周变成结构计量专家。目标更具体：
+            用最少但准确的数学，帮助已经熟悉 DID、TWFE 等方法的经济学研究生建立一套可操作的入门框架。
+          </p>
+          <div class="learning-outcomes" aria-label="学习结果">
+            <div><strong>会判断</strong><span>知道什么问题值得上结构模型，什么问题不需要。</span></div>
+            <div><strong>会拆解</strong><span>能把论文拆成行为、数据、识别、估计、验证与反事实。</span></div>
+            <div><strong>会动手</strong><span>能运行一个 Stata + Python 的农业服务采纳教学项目。</span></div>
+          </div>
+        </header>
+
+        <noscript><div class="callout warning">本课程的正文可以直接阅读，但进度、自测和交互实验需要启用 JavaScript。</div></noscript>
+
+        <section class="content-section" aria-labelledby="route-title">
+          <span class="section-kicker">Learning route</span>
+          <h2 id="route-title">七个短模块，一次只解决一个问题</h2>
+          <div class="module-grid">
+            <article class="module-card" data-module-card="why">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">1</span>
+              <h2>先判断是否需要结构模型</h2>
+              <p>修正“结构一定比简约式高级”的误解，建立方法选择的决策标准。</p>
+              <a class="card-link" href="why-structure/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="model">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">2</span>
+              <h2>从研究问题到可估计模型</h2>
+              <p>用机械化服务采纳案例串起行动者、状态、选择、效用、误差、识别和反事实。</p>
+              <a class="card-link" href="model-building/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="math">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">3</span>
+              <h2>数学急救包</h2>
+              <p>概率、期望、方差、AR(1) 和优化；三个互动实验帮助建立直觉。</p>
+              <a class="card-link" href="math-foundations/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="estimators">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">4</span>
+              <h2>MLE、GMM、SMM 与间接推断</h2>
+              <p>不靠口诀，统一理解为“模型与数据怎样对账”，并厘清方法之间的关系。</p>
+              <a class="card-link" href="estimators/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="cases">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">5</span>
+              <h2>发展经济学经典案例</h2>
+              <p>技术采纳、教育补贴、微型金融、迁移与风险分担：按同一模板拆四篇论文。</p>
+              <a class="card-link" href="development-cases/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="hands-on">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">6</span>
+              <h2>农业机械化服务完整实操</h2>
+              <p>从模拟数据、MLE、拟合到补贴反事实，配套可下载的 Stata 和 Python 代码。</p>
+              <a class="card-link" href="hands-on/">进入模块 →</a>
+            </article>
+            <article class="module-card" data-module-card="next">
+              <span class="module-status" data-module-status>未完成</span><span class="module-number">7</span>
+              <h2>八周路线、权威资料与自测</h2>
+              <p>用十题自测定位薄弱点，并把下一步落实到阅读、复现和自己的小项目。</p>
+              <a class="card-link" href="next-steps/">进入模块 →</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="case-title">
+          <span class="section-kicker">One running example</span>
+          <h2 id="case-title">贯穿全课的案例：农户是否购买农业机械化服务？</h2>
+          <div class="callout blue">
+            一个农户会权衡服务价格、经营规模、距离和服务质量。我们先把选择写成一个静态 logit 模型，
+            再用随机代金券提供的价格变化识别价格敏感度，最后模拟不同补贴率下的采纳率。
+          </div>
+          <p>
+            这个教学案例刻意保持小：它不包含服务商进入、容量约束、价格内生性和一般均衡。
+            这些不是被忽略，而是会在课程中明确列为反事实适用边界，并给出升级路线。
+          </p>
+        </section>
+
+        <div class="module-pager"><span></span><a href="why-structure/">开始模块 1 →</a></div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 Xiaoshi Zhou</span>
+      <span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span>
+    </footer>
+    <script src="../../assets/js/structural-course.js"></script>
+  </body>
+</html>

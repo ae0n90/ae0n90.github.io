@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>6. 农业机械化服务完整实操 | 结构估计入门</title>
+    <meta name="description" content="用农业机械化服务采纳教学数据完成静态 logit 结构模型、MLE、拟合检验与补贴反事实，下载 Stata 和 Python 代码。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/hands-on/">
+    <link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/learning.css">
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../about/">About</a><a href="../../../research/">Research</a><a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a><a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="课程目录"><span class="course-label">Structural estimation</span><h2>结构估计入门</h2><div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a aria-current="page" data-course-nav-module="hands-on" href="./"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a aria-current="page" data-course-nav-module="hands-on" href="./"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 6</div>
+        <header class="course-hero"><span class="module-kicker">Module 6 · 约 90 分钟</span><h1>亲手完成一次<br>农业机械化服务结构估计</h1><p>从教学数据生成到 MLE、拟合、补贴反事实和适用边界。浏览器先帮助理解，下载代码再完成可复现版本。</p></header>
+
+        <section class="content-section" aria-labelledby="brief-title"><span class="section-kicker">Research brief</span><h2 id="brief-title">研究设定</h2>
+          <div class="content-card"><p><strong>问题：</strong>随机发放服务代金券后，农户的净服务价格下降。我们估计价格敏感度与经营规模收益，并模拟普惠补贴下的采纳率和财政成本。</p><p><strong>样本：</strong>700 个模拟农户。代金券随机分配；服务标价、经营规模、距离和质量均可观测。</p><p><strong>选择：</strong>是否购买机械化服务。</p><p><strong>估计：</strong>二元 logit MLE。浏览器版只让你调价格与规模两个参数，截距、距离和质量系数固定；下载代码会同时估计全部系数。</p></div>
+          <div class="formula-box">P(购买ᵢ=1) = Λ[β₀ + α·净价格ᵢ + β·log(1+规模ᵢ) + γ·距离ᵢ + δ·质量ᵢ]</div>
+          <div class="callout warning"><strong>教学数据不等于实证证据。</strong>这里的“真参数”和外生代金券由程序设定，只用于检查估计逻辑。真实服务价格通常可能与未观测质量、需求和供给能力相关，不能直接照搬外生价格假设。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="lab-title"><span class="section-kicker">Interactive lab</span><h2 id="lab-title">先在浏览器里摸到似然与反事实</h2>
+          <div class="lab"><p class="lab-label">步骤 1 · 参数估计</p><h3>让模型解释农户的购买选择</h3><p>手动拖动参数观察对数似然，再让坐标搜索自动寻找更优值。有限样本下估计值应接近但不会等于程序设定的真值。</p>
+            <div class="control-row"><label for="mech-alpha">α：净价格系数</label><input id="mech-alpha" type="range" min="-3" max="-0.05" step="0.01" value="-0.45"><span class="control-value" id="mech-alpha-value">-0.45</span></div>
+            <div class="control-row"><label for="mech-beta">β：log(1+经营规模) 系数</label><input id="mech-beta" type="range" min="-0.5" max="2" step="0.01" value="0.15"><span class="control-value" id="mech-beta-value">0.15</span></div>
+            <div class="button-row"><button class="learning-button" id="mech-estimate" type="button">自动最大化似然</button></div><div class="lab-output" id="mech-estimate-output" aria-live="polite"></div>
+          </div>
+          <div class="lab"><p class="lab-label">步骤 2 · 政策反事实</p><h3>改变补贴率，重新计算购买概率</h3><p>补贴按实际购买支付，财政成本是每户预期成本。图中只改变农户净价格，服务供给和标价保持不变。</p>
+            <div class="control-row"><label for="mech-subsidy">普惠补贴率</label><input id="mech-subsidy" type="range" min="0" max="0.5" step="0.01" value="0.2"><span class="control-value" id="mech-subsidy-value">20%</span></div>
+            <div class="lab-output" id="mech-policy-output" aria-live="polite"></div><canvas id="mech-canvas" width="760" height="280" role="img" aria-label="不同机械化服务补贴率下的预测采纳率"></canvas>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="workflow-title"><span class="section-kicker">Reproducible workflow</span><h2 id="workflow-title">把网页实验变成研究代码</h2>
+          <div class="table-wrap"><table class="learning-table"><caption>可复现实操的五个检查点</caption><thead><tr><th>阶段</th><th>要做什么</th><th>通过标准</th></tr></thead><tbody>
+            <tr><td>1. 生成/读入数据</td><td>固定 seed；明确变量单位、选择时点与政策随机化</td><td>重新运行得到相同教学数据</td></tr>
+            <tr><td>2. 估计</td><td>最大化 logit 对数似然；报告估计值、标准误和收敛</td><td>模拟样本中能在抽样误差内回收真值</td></tr>
+            <tr><td>3. 拟合</td><td>比较观测和预测采纳率，并按净价格分组</td><td>不只报告总体平均</td></tr>
+            <tr><td>4. 反事实</td><td>改变净价格，计算采纳率与财政成本</td><td>使用同一估计参数，并传播不确定性</td></tr>
+            <tr><td>5. 边界</td><td>列明价格内生性、供给容量、进入与外推范围</td><td>结论不超过模型能回答的问题</td></tr>
+          </tbody></table></div>
+          <div class="code-downloads"><a class="learning-button" href="../../../assets/code/structural-estimation-mechanization.do" download>下载 Stata .do</a><a class="learning-button secondary" href="../../../assets/code/structural-estimation-mechanization.py" download>下载 Python .py</a></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="stata-title"><span class="section-kicker">Stata first</span><h2 id="stata-title">Stata 路线：从熟悉的 logit 看见结构含义</h2>
+          <p>Stata 脚本使用 <code>logit</code>，因为该命令正是在最大化二元选择模型的对数似然。重点不是另写一个复杂优化器，而是把系数映射回效用，并用估计参数执行政策模拟。</p>
+          <div class="code-block"><pre><code>set seed 20260804
+logit adopt net_price ln_land distance quality, vce(robust)
+
+* 给定补贴率 s，重新计算净价格与预测概率
+gen phat_cf = invlogit(_b[_cons] + _b[net_price] * listed_price * (1-s) ///
+    + _b[ln_land] * ln_land + _b[distance] * distance ///
+    + _b[quality] * quality)</code></pre></div>
+          <p>完整脚本还会输出按价格四分位的拟合表和 0–50% 补贴率的反事实 CSV/图形。</p>
+        </section>
+
+        <section class="content-section" aria-labelledby="python-title"><span class="section-kicker">Python next</span><h2 id="python-title">Python 路线：亲自写目标函数与 Newton 更新</h2>
+          <p>Python 脚本只用标准库，显式计算 score 和信息矩阵，再用 Newton–Raphson 更新参数；无需安装依赖即可运行。模型复杂后可把相同目标函数接口交给 SciPy 等成熟优化库。</p>
+          <div class="code-block"><pre><code>score, information = score_and_information(theta, farmers)
+step = solve_linear_system(information, score)
+theta = [value + change for value, change in zip(theta, step)]
+
+if max(abs(change) for change in step) &lt; tolerance:
+    break</code></pre></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="limits-title"><span class="section-kicker">Do not overclaim</span><h2 id="limits-title">这个模型现在不能回答什么？</h2>
+          <ul><li><strong>服务商进入：</strong>补贴提高需求后是否有新服务商进入？静态需求模型没有供给方。</li><li><strong>容量与拥堵：</strong>旺季服务供给有限时，补贴可能抬价或延迟作业。</li><li><strong>价格内生性：</strong>真实标价可能随未观测需求和质量变化，需要工具变量、实验价格或联合供需模型。</li><li><strong>动态学习：</strong>农户可能先试用再更新质量认知，需要动态学习模型。</li><li><strong>福利：</strong>采纳率不是福利。完整福利分析还需服务收益、成本、财政机会成本和供给者剩余。</li></ul>
+          <div class="callout blue"><strong>合理升级顺序：</strong>先把静态外生价格模型跑通并验证；再分别加入价格内生、未观测异质性、动态学习或服务商进入。不要一次把四个扩展全塞进第一个项目。</div>
+        </section>
+
+        <footer class="module-footer"><p>验收标准：能运行至少一份下载脚本，并解释估计、拟合、反事实和适用边界四类输出。</p><button class="completion-button" type="button" data-complete-module="hands-on" aria-pressed="false">标记本模块为已完成</button></footer><div class="module-pager"><a href="../development-cases/">← 模块 5</a><a href="../next-steps/">模块 7：路线与自测 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../assets/js/structural-course.js"></script>
+  </body>
+</html>

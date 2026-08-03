@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>4. MLE、GMM 与 SMM | 结构估计入门</title>
+    <meta name="description" content="以统一的对账思路理解最大似然、广义矩、模拟矩与间接推断，配 MLE 和 SMM 互动实验。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/estimators/">
+    <link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/learning.css">
+  </head>
+  <body>
+    <header class="site-header"><a class="brand" href="../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../about/">About</a><a href="../../../research/">Research</a><a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a><a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="课程目录"><span class="course-label">Structural estimation</span><h2>结构估计入门</h2><div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a aria-current="page" data-course-nav-module="estimators" href="./"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a aria-current="page" data-course-nav-module="estimators" href="./"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 4</div>
+        <header class="course-hero"><span class="module-kicker">Module 4 · 约 70 分钟</span><h1>MLE、GMM、SMM<br>到底在做什么？</h1><p>四个缩写不需要分别死记。它们都在建立一个“模型与数据的对账规则”，再寻找让账最接近的参数。</p></header>
+
+        <section class="content-section" aria-labelledby="unified-title"><span class="section-kicker">One map</span><h2 id="unified-title">统一地图：先问模型能给你什么</h2>
+          <div class="table-wrap"><table class="learning-table"><caption>从模型输出到估计方法</caption><thead><tr><th>模型可以计算什么</th><th>典型方法</th><th>对账对象</th><th>核心问题</th></tr></thead><tbody>
+            <tr><td>每个真实选择发生的概率</td><td>MLE</td><td>整份数据的似然</td><td>哪组参数让观察到的数据最可能？</td></tr>
+            <tr><td>理论正交条件 E[g(W,θ)]=0</td><td>GMM</td><td>样本矩离零多远</td><td>哪组参数最接近理论限制？</td></tr>
+            <tr><td>给定参数能模拟数据，但难写似然/理论矩</td><td>SMM</td><td>模拟矩与数据矩</td><td>哪组参数生成的数据特征最像？</td></tr>
+            <tr><td>复杂模型可模拟，且简单辅助模型能概括关键动态</td><td>间接推断</td><td>两份数据上的辅助模型参数</td><td>哪组结构参数复现辅助关系？</td></tr>
+          </tbody></table></div>
+          <div class="callout warning">SMM 不是“GMM 的升级版”，间接推断也不是“SMM 的高级版”。它们适用的模型输出不同，估计效率和稳健性取决于矩、辅助模型、模拟误差与权重选择。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="mle-title"><span class="section-kicker">Maximum likelihood</span><h2 id="mle-title">MLE：哪组参数最能解释已经观察到的选择？</h2>
+          <p>抛硬币 10 次，按顺序记录到 7 次正面、3 次反面。若正面概率为 p，这个特定序列的似然核是：</p>
+          <div class="formula-box">L(p) = p⁷(1-p)³，　log L(p) = 7 log p + 3 log(1-p)</div>
+          <p>若只记录“7 正 3 反”而不管顺序，还要乘组合数 C(10,7)。组合数与 p 无关，所以最大值仍在 p=0.7，但“概率”的数值会不同。</p>
+          <div class="lab"><p class="lab-label">互动实验 1</p><h3>拖动 p，观察似然山</h3>
+            <div class="control-row"><label for="mle-p">候选正面概率 p</label><input id="mle-p" type="range" min="0.01" max="0.99" step="0.01" value="0.45"><span class="control-value" id="mle-p-value">0.45</span></div>
+            <div class="button-row"><button class="learning-button" id="mle-auto" type="button">直接找到最大值</button></div><div class="lab-output" id="mle-output" aria-live="polite"></div><canvas id="mle-canvas" width="760" height="260" role="img" aria-label="硬币正面概率与相对似然曲线"></canvas>
+          </div>
+          <p>二元 logit 把每个农户实际选择的概率相乘（实际计算用对数相加），思想完全相同。关键是：选择概率来自明确的效用与随机项假设。</p>
+        </section>
+
+        <section class="content-section" aria-labelledby="gmm-title"><span class="section-kicker">Generalized method of moments</span><h2 id="gmm-title">GMM：让模型要求成立的矩条件尽量接近零</h2>
+          <p>若模型在真参数 θ₀ 下推出工具变量 z 与结构误差 u(θ₀) 正交：</p>
+          <div class="formula-box">E[zᵢuᵢ(θ₀)] = 0<br><br>样本矩：ḡ(θ) = (1/N) Σ zᵢuᵢ(θ)<br>目标函数：Q(θ) = ḡ(θ)′ W ḡ(θ)</div>
+          <p><strong>正交</strong>指乘积期望为零，不应简单翻译成“相关系数一定等于零”。GMM 调整参数，使样本矩在权重矩阵 W 下尽量接近零。</p>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-tag">Exactly identified</span><h2>矩数 = 参数数</h2><p>可能恰好解出参数，但“数量对上”不代表经济识别成立。</p></article>
+            <article class="concept-card"><span class="concept-tag">Overidentified</span><h2>矩数 &gt; 参数数</h2><p>无法让所有样本矩同时为零，需要权重矩阵；J 检验只能检验联合限制，不能证明模型正确。</p></article>
+            <article class="concept-card"><span class="concept-tag">Weighting</span><h2>W 决定怎样衡量差距</h2><p>有效 GMM 使用矩协方差的逆矩阵，但有限样本、弱识别与矩过多都可能带来问题。</p></article>
+            <article class="concept-card"><span class="concept-tag">IV relation</span><h2>2SLS 是 GMM 特例</h2><p>线性 IV 的正交条件 E[z(y-xβ)]=0 可以放进 GMM 框架。</p></article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="smm-title"><span class="section-kicker">Simulated method of moments</span><h2 id="smm-title">SMM：理论矩算不出，就让模型生成数据再对账</h2>
+          <p>给定 θ，模型可以模拟一份“假数据”。从真实数据与模拟数据各算一组矩，然后最小化距离：</p>
+          <div class="formula-box">m_data = 数据矩，　m_sim(θ) = 模拟矩<br>Q(θ) = [m_data - m_sim(θ)]′ W [m_data - m_sim(θ)]</div>
+          <p>下面用 AR(1) 的标准差和一阶自相关识别 ρ 与 σ。注意两个参数都会影响多个矩；识别来自整个映射的形状，不是“一个矩专门钉一个参数”。</p>
+          <div class="lab"><p class="lab-label">互动实验 2</p><h3>用模拟矩找回 AR(1) 参数</h3>
+            <div class="control-row"><label for="smm-rho">ρ（候选持久性）</label><input id="smm-rho" type="range" min="0.35" max="0.96" step="0.01" value="0.55"><span class="control-value" id="smm-rho-value">0.55</span></div>
+            <div class="control-row"><label for="smm-sigma">σ（候选冲击标准差）</label><input id="smm-sigma" type="range" min="0.1" max="0.55" step="0.01" value="0.42"><span class="control-value" id="smm-sigma-value">0.42</span></div>
+            <div class="button-row"><button class="learning-button" id="smm-search" type="button">网格搜索最小矩距离</button></div><div class="lab-output" id="smm-output" aria-live="polite"></div><canvas id="smm-canvas" width="760" height="260" role="img" aria-label="真实与模拟 AR1 序列对比"></canvas>
+          </div>
+          <div class="callout blue"><strong>共同随机数：</strong>实验在不同候选参数下使用同一组模拟冲击，减少“参数没变多少、目标函数却因抽样噪声乱跳”的问题。正式研究还要检查模拟次数与抽样误差。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="ii-title"><span class="section-kicker">Indirect inference</span><h2 id="ii-title">间接推断：用一个易估的辅助模型压缩复杂数据</h2>
+          <p>真实数据跑一次辅助回归或 VAR，模拟数据也跑同一个模型。结构参数选择为使两组辅助参数接近。辅助模型不必是真的结构模型，但必须对结构参数敏感并能概括重要数据特征。</p>
+          <div class="callout warning">“辅助回归系数有经济含义”不是充分条件。若不同结构参数生成几乎相同的辅助参数，间接推断仍然识别不了。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="choice-title"><span class="section-kicker">Practical choice</span><h2 id="choice-title">选择估计器时按这五问走</h2><ol><li>给定参数，模型能否算出观测数据的概率？能则先考虑 MLE。</li><li>理论是否给出可信的正交条件或工具变量？有则考虑 GMM。</li><li>模型能否稳定、快速地模拟数据？能而似然难写时考虑 SMM。</li><li>哪些矩或辅助模型真正识别参数，而不是只改善表面拟合？</li><li>怎样计算标准误并传播到反事实？解析、数值导数、bootstrap 或模拟均需匹配估计程序。</li></ol>
+          <div class="callout"><strong>无论哪种方法都要报告：</strong>参数初值和边界、目标函数、优化算法、收敛标准、多初值结果、标准误、拟合/未用矩、模拟次数与随机种子。</div>
+        </section>
+
+        <footer class="module-footer"><p>验收标准：看到一个模型时，能根据“可计算的模型输出”解释为何选择 MLE、GMM、SMM 或间接推断。</p><button class="completion-button" type="button" data-complete-module="estimators" aria-pressed="false">标记本模块为已完成</button></footer><div class="module-pager"><a href="../math-foundations/">← 模块 3</a><a href="../development-cases/">模块 5：发展经济学案例 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../assets/js/structural-course.js"></script>
+  </body>
+</html>
