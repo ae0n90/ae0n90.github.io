@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>结构估计进阶桥接 | AI Learning</title>
+    <meta name="description" content="从结构估计入门走向静态选择、动态离散选择、博弈模型与选择模型/MTE的四条进阶路线。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/advanced/">
+    <link rel="stylesheet" href="../../../assets/css/site.css">
+    <link rel="stylesheet" href="../../../assets/css/learning.css">
+  </head>
+  <body class="advanced-course">
+    <header class="site-header">
+      <a class="brand" href="../../../">Xiaoshi Zhou</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../../../about/">About</a><a href="../../../research/">Research</a>
+        <a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a>
+        <a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a>
+      </nav>
+    </header>
+
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="进阶课程目录">
+        <span class="course-label">Advanced bridge</span>
+        <h2>结构估计进阶</h2>
+        <ol class="course-nav">
+          <li><a href="../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li>
+          <li class="course-nav-divider">四条路线</li>
+          <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>进阶地图</span></a></li>
+          <li><a href="static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li>
+          <li><a href="dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li>
+          <li><a href="games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li>
+          <li><a href="selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li>
+        </ol>
+      </aside>
+
+      <main class="course-main">
+        <details class="course-mobile-nav">
+          <summary>进阶课程目录 · 4 条路线</summary>
+          <ol class="course-nav">
+            <li><a href="../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li>
+            <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>进阶地图</span></a></li>
+            <li><a href="static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li>
+            <li><a href="dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li>
+            <li><a href="games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li>
+            <li><a href="selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li>
+          </ol>
+        </details>
+
+        <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>进阶桥接</div>
+
+        <header class="course-hero">
+          <span class="module-kicker">Advanced bridge · 4 short routes</span>
+          <h1>进阶模型地图<span>从一个农户的静态 logit，走向时间、市场互动与政策选择</span></h1>
+          <p>
+            七模块入门课回答“结构估计是什么、如何开始”。这里继续回答：选择不止买或不买怎么办？
+            今天的决定会改变明天怎么办？服务商会相互反应怎么办？政策改变的参与者不是同一群人怎么办？
+          </p>
+          <div class="learning-outcomes" aria-label="进阶学习结果">
+            <div><strong>先分模型</strong><span>根据研究对象选择连续、离散、动态、博弈或选择模型。</span></div>
+            <div><strong>再分计算</strong><span>看懂求解模型、构造目标函数和数值优化是三件事。</span></div>
+            <div><strong>最后谈政策</strong><span>把反事实限制在均衡、支持范围与可识别参数以内。</span></div>
+          </div>
+        </header>
+
+        <section class="content-section" aria-labelledby="bridge-title">
+          <span class="section-kicker">Why another level</span>
+          <h2 id="bridge-title">入门模型没有错，但只覆盖了地图的一小格</h2>
+          <p>
+            原实操把农户购买机械化服务写成静态二元 logit。它适合学习效用、选择概率、MLE 和补贴反事实，
+            但它假定价格外生、农户没有未来、服务商不作反应、一个平均价格系数能代表所有农户。
+          </p>
+          <div class="pathway-strip" aria-label="从简单模型到进阶模型的升级路径">
+            <div class="path-step"><strong>单一静态选择</strong><span>今天买不买服务</span></div>
+            <div class="path-step"><strong>异质与价格内生</strong><span>选哪家、为何替代</span></div>
+            <div class="path-step"><strong>动态与互动</strong><span>未来价值、企业反应</span></div>
+            <div class="path-step"><strong>政策参与边际</strong><span>政策改变了谁</span></div>
+          </div>
+          <div class="callout blue"><strong>学习顺序不是模型等级：</strong>研究问题只需要静态模型时，不应为了“更高级”强行加入动态或博弈。新增结构必须对应真实行为、可用数据和目标反事实。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="routes-title">
+          <span class="section-kicker">Four routes</span>
+          <h2 id="routes-title">每页只跨过一道门槛</h2>
+          <div class="advanced-route-grid">
+            <article class="advanced-route">
+              <span class="route-index">A</span><h3>静态连续与离散选择</h3>
+              <p>从需求系统与理论限制，走到随机效用、IIA、mixed logit、价格内生与 BLP。</p>
+              <a class="card-link" href="static-choice/">进入路线 A →</a>
+            </article>
+            <article class="advanced-route">
+              <span class="route-index">B</span><h3>动态离散选择</h3>
+              <p>用 Bellman 方程理解未来价值，再区分 VFI、PFI、NFXP、CCP 与有限期倒推。</p>
+              <a class="card-link" href="dynamic-choice/">进入路线 B →</a>
+            </article>
+            <article class="advanced-route">
+              <span class="route-index">C</span><h3>进入博弈与多重均衡</h3>
+              <p>把农业服务商放进同一个市场，理解最佳反应、均衡选择、矩不等式与集合识别。</p>
+              <a class="card-link" href="games/">进入路线 C →</a>
+            </article>
+            <article class="advanced-route">
+              <span class="route-index">D</span><h3>选择模型、LATE 与 MTE</h3>
+              <p>理解谁参加项目不是随机的，以及不同工具变量和政策为何加权不同人群的处理效应。</p>
+              <a class="card-link" href="selection-mte/">进入路线 D →</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="course-map-title">
+          <span class="section-kicker">Course map</span>
+          <h2 id="course-map-title">课程课件的主干，怎样转成可学习网页？</h2>
+          <div class="table-wrap">
+            <table class="learning-table">
+              <caption>从课程结构到本站分页</caption>
+              <thead><tr><th>课程主干</th><th>核心问题</th><th>本站位置</th></tr></thead>
+              <tbody>
+                <tr><td>导论、识别与模拟估计</td><td>为何建模、参数靠什么识别、如何验证</td><td>七模块入门课</td></tr>
+                <tr><td>单一行动者：静态连续/离散选择</td><td>选择集合、替代模式、价格内生</td><td>路线 A</td></tr>
+                <tr><td>单一行动者：动态离散选择</td><td>状态转移、未来价值、模型求解</td><td>路线 B</td></tr>
+                <tr><td>多个行动者：静态与动态博弈</td><td>战略互动、多重均衡、部分识别</td><td>路线 C</td></tr>
+                <tr><td>处理效应：Roy/选择模型与 MTE</td><td>自我选择、边际参与者、政策外推</td><td>路线 D</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="evidence-title">
+          <span class="section-kicker">Reduced form + structure</span>
+          <h2 id="evidence-title">课件案例反复强调的一条线：先用可信变化约束模型</h2>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-tag">数字成瘾</span><h2>实验 + 动态模型</h2><p>实验可以识别短期行为反应；动态模型把习惯、未来选择和长期福利连起来。两类证据承担不同任务。</p></article>
+            <article class="concept-card"><span class="concept-tag">社会规范与生育</span><h2>家庭模型 + SMM</h2><p>集体家庭决策和家庭生产解释资源与规范怎样共同进入选择；模拟矩把难以直接写出的结果与数据对账。</p></article>
+            <article class="concept-card"><span class="concept-tag">身份与消费</span><h2>DID + 结构需求</h2><p>DID 先给出环境变化后的事实，结构需求系统再把消费替代与福利对象写清。结构不是用来替代识别。</p></article>
+            <article class="concept-card"><span class="concept-tag">PROGRESA</span><h2>实验 + 模型验证</h2><p>实验组可用来检验动态模型对未参与估计的政策环境能否预测，避免只用样本内拟合给模型打分。</p></article>
+          </div>
+        </section>
+
+        <aside class="source-note">
+          <strong>整理来源与边界：</strong>本进阶部分依据用户本地保存的北京大学易君健老师 2024–2025 学年
+          <em>Structural Econometrics</em> 课程大纲、Lecture 1–7 及配套案例课件的知识脉络二次整理。
+          其中部分导论课件和案例课件有各自原作者。本站的中文讲解、发展经济学案例与交互实验均为独立改写，
+          不是课件复制、课程镜像或官方授权版本；原 PDF 不在本站公开。
+        </aside>
+
+        <div class="module-pager"><a href="../">← 返回入门课</a><a href="static-choice/">路线 A：静态选择 →</a></div>
+      </main>
+    </div>
+
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer>
+  </body>
+</html>

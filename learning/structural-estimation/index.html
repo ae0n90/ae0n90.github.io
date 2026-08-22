@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>结构估计入门 | AI Learning</title>
-    <meta name="description" content="面向应用经济学研究生的结构估计分页课程：直觉、模型、数学、MLE/GMM/SMM、发展经济学案例、农业机械化服务实操与学习路线。">
+    <meta name="description" content="面向应用经济学研究生的结构估计分页课程：七个入门模块、四条进阶路线、发展经济学案例、交互实验与可复现代码。">
     <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="结构估计 | Structural Estimation">
-    <meta property="og:description" content="面向应用经济学研究生的七模块引导式课程，含发展经济学案例、交互实验与 Stata/Python 实操。">
+    <meta property="og:description" content="七个入门模块与四条进阶路线，含发展经济学案例、交互实验及 Stata/Python 实操。">
     <meta property="og:url" content="https://900112.xyz/learning/structural-estimation/">
     <meta property="og:image" content="https://900112.xyz/assets/images/structural-estimation-og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -46,6 +46,8 @@
           <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
           <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
           <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+          <li class="course-nav-divider">继续学习</li>
+          <li><a href="advanced/"><span class="nav-index">↗</span><span>进阶模型地图</span></a></li>
         </ol>
       </aside>
 
@@ -61,13 +63,14 @@
             <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
             <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
             <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+            <li><a href="advanced/"><span class="nav-index">↗</span><span>进阶模型地图</span></a></li>
           </ol>
         </details>
 
         <div class="breadcrumbs"><a href="../">AI Learning</a><span>/</span>结构估计入门</div>
 
         <header class="course-hero">
-          <span class="module-kicker">Guided course · 7 modules</span>
+          <span class="module-kicker">Guided course · 7 modules + 4 advanced routes</span>
           <h1>结构估计<span>从“会回归”到“会建模、会估计、会做政策反事实”</span></h1>
           <p>
             这不是结构估计百科全书，也不承诺八周变成结构计量专家。目标更具体：
@@ -131,6 +134,22 @@
           </div>
         </section>
 
+        <section class="content-section" aria-labelledby="advanced-title">
+          <span class="section-kicker">Advanced bridge</span>
+          <h2 id="advanced-title">学完静态二元 logit，下一步不是把模型一次做大</h2>
+          <p>
+            新增进阶部分沿课程课件的主干拆成四页。每一页都从一个发展经济学问题出发，
+            只增加一类必要复杂性，并配一个可操作的直觉实验。
+          </p>
+          <div class="advanced-route-grid">
+            <article class="advanced-route"><span class="route-index">A</span><h3>静态连续与离散选择</h3><p>需求系统、随机效用、IIA、随机系数、价格内生与 BLP。</p><a class="card-link" href="advanced/static-choice/">进入路线 A →</a></article>
+            <article class="advanced-route"><span class="route-index">B</span><h3>动态离散选择</h3><p>Bellman 方程、有限期倒推、VFI/PFI、NFXP 与 CCP。</p><a class="card-link" href="advanced/dynamic-choice/">进入路线 B →</a></article>
+            <article class="advanced-route"><span class="route-index">C</span><h3>进入博弈与多重均衡</h3><p>服务商最佳反应、均衡选择、矩不等式与集合识别。</p><a class="card-link" href="advanced/games/">进入路线 C →</a></article>
+            <article class="advanced-route"><span class="route-index">D</span><h3>选择模型、LATE 与 MTE</h3><p>样本选择、控制函数、边际参与者与政策相关处理效应。</p><a class="card-link" href="advanced/selection-mte/">进入路线 D →</a></article>
+          </div>
+          <p><a class="learning-button" href="advanced/">先看完整进阶地图</a></p>
+        </section>
+
         <section class="content-section" aria-labelledby="case-title">
           <span class="section-kicker">One running example</span>
           <h2 id="case-title">贯穿全课的案例：农户是否购买农业机械化服务？</h2>
@@ -143,6 +162,12 @@
             这些不是被忽略，而是会在课程中明确列为反事实适用边界，并给出升级路线。
           </p>
         </section>
+
+        <aside class="source-note">
+          <strong>本次增补说明：</strong>进阶路线依据用户本地保存的北京大学易君健老师 2024–2025 学年
+          <em>Structural Econometrics</em> 课程大纲、Lecture 1–7 及配套案例课件的知识脉络二次整理。
+          讲解、发展经济学案例与交互实验均为独立改写；原课件不在本站公开。部分导论与案例课件有各自原作者，本站不将其统一署为易老师原创。
+        </aside>
 
         <div class="module-pager"><span></span><a href="why-structure/">开始模块 1 →</a></div>
       </main>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C. 进入博弈与多重均衡 | 结构估计进阶</title>
+    <meta name="description" content="用农业服务商进入案例理解最佳反应、纳什均衡、多重均衡、矩不等式与集合识别。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/advanced/games/">
+    <link rel="stylesheet" href="../../../../assets/css/site.css"><link rel="stylesheet" href="../../../../assets/css/learning.css">
+  </head>
+  <body class="advanced-course">
+    <header class="site-header"><a class="brand" href="../../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../../about/">About</a><a href="../../../../research/">Research</a><a href="../../../../publications/">Publications</a><a href="../../../../teaching/">Teaching</a><a href="../../../../resources/">Resources</a><a aria-current="page" href="../../../">AI Learning</a><a href="../../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="进阶课程目录"><span class="course-label">Advanced bridge</span><h2>结构估计进阶</h2><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li class="course-nav-divider">四条路线</li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>进阶课程目录 · 路线 C</summary><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../../">AI Learning</a><span>/</span><a href="../../">结构估计</a><span>/</span><a href="../">进阶</a><span>/</span>博弈</div>
+        <header class="course-hero"><span class="module-kicker">Route C · 约 50 分钟</span><h1>进入博弈<span>我的最优选择取决于你怎么选</span></h1><p>农户需求模型把价格和服务商数量当作给定；进入博弈进一步问：看到同一批村庄，两家服务商会不会进入？竞争本身会改变每家的利润。</p></header>
+        <noscript><div class="callout warning">正文可以直接阅读；进入博弈收益矩阵需要启用 JavaScript。</div></noscript>
+
+        <section class="content-section" aria-labelledby="one-to-many-title"><span class="section-kicker">From one agent to many</span><h2 id="one-to-many-title">单一行动者模型哪里不够了？</h2>
+          <div class="compare-grid">
+            <article><h3>普通选择模型</h3><p>给定价格、距离和质量，农户选自营或购买。其他人的选择通常被放进环境变量。</p></article>
+            <article><h3>博弈模型</h3><p>服务商 A 的进入利润取决于 B 是否进入，B 也在预测 A。每个人都在对别人作最佳反应。</p></article>
+          </div>
+          <div class="formula-box">企业 i 进入，当进入利润 πᵢ(进入, 对手行动, 市场 X; θ) ≥ 不进入利润 0</div>
+          <p>“均衡”不是大家都赚钱最多，而是给定别人当前的选择，没有任何一家愿意单方面改变自己的选择。</p>
+        </section>
+
+        <section class="content-section" aria-labelledby="information-title"><span class="section-kicker">Information structure</span><h2 id="information-title">完全信息与不完全信息，差在谁看见了什么</h2>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-tag">Complete information</span><h2>成本大家都知道</h2><p>两家都知道市场需求、自己和对方成本，也知道对方知道这些。研究者可能仍有未观察量。</p></article>
+            <article class="concept-card"><span class="concept-tag">Incomplete information</span><h2>各自知道自己的私人成本</h2><p>A 看见自己的临时冲击，但只知道 B 冲击的分布。最优反应取决于对方进入概率而非确定行动。</p></article>
+          </div>
+          <div class="callout blue"><strong>贝叶斯纳什均衡：</strong>每家基于自己的信息和对对方的信念作最优选择，而且这些信念与最终选择概率互相一致。常写成固定点 p = Ψ(p, X; θ)。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="entry-lab-title"><span class="section-kicker">Interactive entry game</span><h2 id="entry-lab-title">市场足够养活一家，却养不活两家时，会发生什么？</h2>
+          <div class="lab"><p class="lab-label">两家对称服务商</p><h3>拖动需求、固定成本和竞争损失</h3><p>进入者独占市场时利润为“需求−成本”；两家都进入时，每家再承受竞争损失。绿色格是纯策略纳什均衡。</p>
+            <div class="control-row"><label for="entry-demand">市场需求</label><input id="entry-demand" type="range" min="0" max="12" step="0.2" value="7"><span class="control-value" id="entry-demand-value">7.0</span></div>
+            <div class="control-row"><label for="entry-cost">进入固定成本</label><input id="entry-cost" type="range" min="0" max="10" step="0.2" value="4"><span class="control-value" id="entry-cost-value">4.0</span></div>
+            <div class="control-row"><label for="entry-competition">两家同时进入的竞争损失</label><input id="entry-competition" type="range" min="0" max="10" step="0.2" value="5"><span class="control-value" id="entry-competition-value">5.0</span></div>
+            <div class="payoff-grid" aria-label="进入博弈收益矩阵">
+              <div class="payoff-cell" id="entry-oo"><strong>A 不进 · B 不进</strong><span>(0.0, 0.0)</span></div>
+              <div class="payoff-cell" id="entry-eo"><strong>A 进入 · B 不进</strong><span>(3.0, 0.0)</span></div>
+              <div class="payoff-cell" id="entry-oe"><strong>A 不进 · B 进入</strong><span>(0.0, 3.0)</span></div>
+              <div class="payoff-cell" id="entry-ee"><strong>A 进入 · B 进入</strong><span>(-2.0, -2.0)</span></div>
+            </div>
+            <div class="lab-output" id="entry-output" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="multiple-title"><span class="section-kicker">Multiple equilibria</span><h2 id="multiple-title">多重均衡不是优化器故障，而是模型真的允许多个结果</h2>
+          <p>当独占有利、两家竞争却亏损时，“只有 A 进”和“只有 B 进”都能自我维持。相同市场特征和参数对应多个可观察结果，直接似然却需要知道每个结果出现的概率。</p>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>处理办法</th><th>额外要求</th><th>能得到什么</th></tr></thead><tbody>
+            <tr><td>指定均衡选择规则</td><td>说明市场怎样在多个均衡中选一个</td><td>可能点识别，但结论依赖规则</td></tr>
+            <tr><td>加入私有冲击/不完全信息</td><td>设定信息与冲击分布，解概率固定点</td><td>选择概率平滑，但仍可能多固定点</td></tr>
+            <tr><td>矩不等式</td><td>只用均衡必须满足的利润符号</td><td>较少选择规则，但通常是集合识别</td></tr>
+          </tbody></table></div>
+          <div class="callout warning"><strong>小标准误不能证明唯一均衡：</strong>若程序暗中选了某一个解，它可以在这个解附近给出很精确的标准误，却没有解决“为什么市场会选这个解”。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="inequality-title"><span class="section-kicker">Moment inequalities</span><h2 id="inequality-title">矩不等式：不强求精确等于零，只要求观察选择没有明显违背最优性</h2>
+          <p>若观察到 A 进入，在给定对手行动下，A 的进入利润应至少不低于不进入；若 A 没进入，反过来的利润差应不大于零。把许多市场的这些符号限制平均起来，就得到矩不等式。</p>
+          <div class="formula-box">观察到进入：E[z·πᵢ(θ) | entry] ≥ 0　；观察到不进入：E[z·πᵢ(θ) | no entry] ≤ 0</div>
+          <p>一整片参数都可能满足这些限制，所以结果是“参数集合”，不是唯一点。集合识别不是失败：它诚实显示数据和弱假设到底排除了多少。</p>
+          <div class="callout blue"><strong>区间的政策含义：</strong>对每个可接受参数都做补贴或道路改善反事实，报告预测范围。若政策排序在整个集合内都相同，结论仍可能很强；若排序翻转，应报告无法确定。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="estimation-title"><span class="section-kicker">Computational routes</span><h2 id="estimation-title">不完全信息博弈的常见估计路线</h2>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>路线</th><th>直觉</th><th>主要风险</th></tr></thead><tbody>
+            <tr><td>嵌套固定点</td><td>每组参数都找所有均衡，再算似然</td><td>昂贵、解可能跳跃，直接 NFXP 很难</td></tr>
+            <tr><td>约束优化</td><td>把参数、选择概率和均衡条件一起交给优化器</td><td>维度大，约束与局部最优需诊断</td></tr>
+            <tr><td>两步 PML / 最小距离</td><td>先非参数估计进入概率，再估利润参数</td><td>第一步误差和稀疏市场状态会传递</td></tr>
+            <tr><td>NPL</td><td>在伪似然参数与进入概率更新间迭代</td><td>可能收敛到不同固定点，需多初值</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="agri-title"><span class="section-kicker">Agricultural service markets</span><h2 id="agri-title">把这个模型用于农业服务市场，数据要升一级</h2>
+          <ol><li>把“市场”定义为服务商进入决策真正相互影响的空间与季节范围，而非任意行政区。</li><li>为每个潜在进入者同时记录进入和未进入市场；只看在营企业会丢掉选择集合。</li><li>区分需求侧变量（种植面积、作物、地形）与企业成本变量（距离、油价、机械存量）。</li><li>考虑企业身份与不对称性：本地合作社、跨区机手和平台服务商的成本不能强行设为相同。</li><li>补贴反事实必须说明补贴给农户还是服务商，以及它改变需求、固定成本还是竞争强度。</li></ol>
+          <div class="callout warning">若进入具有沉没成本、企业会根据过去市场状态续营，静态博弈仍不够；这时要进入动态博弈，计算和识别难度都会明显上升。</div>
+        </section>
+
+        <div class="module-pager"><a href="../dynamic-choice/">← 路线 B</a><a href="../selection-mte/">路线 D：选择与 MTE →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../../assets/js/structural-advanced.js"></script>
+  </body>
+</html>

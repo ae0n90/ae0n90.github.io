@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A. 静态连续与离散选择 | 结构估计进阶</title>
+    <meta name="description" content="用发展经济学例子理解连续选择、随机效用、IIA、混合logit、价格内生与BLP需求估计。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/advanced/static-choice/">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="stylesheet" href="../../../../assets/css/learning.css">
+  </head>
+  <body class="advanced-course">
+    <header class="site-header"><a class="brand" href="../../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../../about/">About</a><a href="../../../../research/">Research</a><a href="../../../../publications/">Publications</a><a href="../../../../teaching/">Teaching</a><a href="../../../../resources/">Resources</a><a aria-current="page" href="../../../">AI Learning</a><a href="../../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="进阶课程目录"><span class="course-label">Advanced bridge</span><h2>结构估计进阶</h2><ol class="course-nav">
+        <li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li class="course-nav-divider">四条路线</li>
+        <li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li>
+        <li><a aria-current="page" href="./"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li>
+        <li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li>
+        <li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li>
+        <li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li>
+      </ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>进阶课程目录 · 路线 A</summary><ol class="course-nav">
+          <li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li>
+          <li><a aria-current="page" href="./"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li>
+        </ol></details>
+        <div class="breadcrumbs"><a href="../../../">AI Learning</a><span>/</span><a href="../../">结构估计</a><span>/</span><a href="../">进阶</a><span>/</span>静态选择</div>
+        <header class="course-hero"><span class="module-kicker">Route A · 约 55 分钟</span><h1>静态选择<span>先分“买多少”与“选哪个”，再处理替代模式和价格内生</span></h1><p>“静态”只表示今天的选择不改变未来价值，不代表模型简单。消费数量、服务商选择和内生价格已经足以构成一套完整的结构需求问题。</p></header>
+        <noscript><div class="callout warning">正文可以直接阅读；IIA 互动实验需要启用 JavaScript。</div></noscript>
+
+        <section class="content-section" aria-labelledby="fork-title"><span class="section-kicker">The first fork</span><h2 id="fork-title">第一步不是选估计器，而是看选择变量长什么样</h2>
+          <div class="compare-grid">
+            <article><h3>连续选择：买多少</h3><p>例：农户把预算分到粮食、教育、化肥和机械服务；选择量可以连续变化。常用效用最大化、需求系统和一阶条件。</p></article>
+            <article><h3>离散选择：选哪个</h3><p>例：自营、服务商 A、服务商 B 三选一；或孩子上学/工作二选一。常用随机效用和选择概率。</p></article>
+          </div>
+          <div class="callout"><strong>判断口诀：</strong>数量在一个区间里连续变化，先想连续选择；从有限菜单中挑一个，先想离散选择。现实中也可两阶段组合：先选服务商，再决定购买面积。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="continuous-title"><span class="section-kicker">Continuous choice</span><h2 id="continuous-title">连续选择：模型不只要拟合，还要尊重经济理论</h2>
+          <p>家庭在价格 <em>p</em> 和总支出 <em>x</em> 下选择各类商品数量，使效用最大。估计得到的需求系统至少要经得起四类检查：</p>
+          <div class="concept-grid">
+            <article class="concept-card"><span class="concept-tag">Adding-up</span><h2>钱要花得完</h2><p>各类商品的预算份额加总为 1。若模型预测花出 110% 的预算，它在会计上已经失败。</p></article>
+            <article class="concept-card"><span class="concept-tag">Homogeneity</span><h2>只看相对价格</h2><p>所有价格和收入同时翻倍，实际购买能力没变，需求不应凭空改变。</p></article>
+            <article class="concept-card"><span class="concept-tag">Symmetry</span><h2>替代效应要对称</h2><p>在标准消费者理论下，补偿需求的交叉价格效应满足 Slutsky 对称限制。</p></article>
+            <article class="concept-card"><span class="concept-tag">Negativity</span><h2>补偿需求向下</h2><p>补偿后提高某商品价格，其需求不能系统性增加；替代矩阵应为半负定。</p></article>
+          </div>
+          <p>AIDS（Almost Ideal Demand System）把预算份额写成价格和实际总支出的函数，灵活且便于施加这些限制。但零消费、商品进入退出和丰富异质性并不会自动解决。</p>
+          <div class="callout warning"><strong>发展经济学应用：</strong>估计贫困家庭的食品、教育和医疗支出时，不能把每条预算份额回归各自独立跑完就称为结构需求；跨方程限制、总支出内生性和零支出都需要处理。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="rum-title"><span class="section-kicker">Random utility</span><h2 id="rum-title">离散选择：我们只观察“赢家”，看不到完整效用</h2>
+          <div class="formula-box">农户 i 选择 j，当且仅当 Uᵢⱼ = Vᵢⱼ(X, p; β) + εᵢⱼ 比其他所有选项都大</div>
+          <p>可见部分 <em>V</em> 放入价格、距离、质量和农户特征；不可见部分 ε 表示研究者没有观察到、但会影响选择的因素。数据只告诉我们最终选了谁，因此有两条基本归一化：</p>
+          <ol><li><strong>位置不识别：</strong>给所有选项效用同时加 10，选择不变。通常把一个外部选项的常数设为 0。</li><li><strong>尺度不识别：</strong>把所有效用同时乘以正数，排序不变。必须规范化误差尺度；logit 的尺度已经藏在分布假设里。</li></ol>
+          <div class="callout blue">“价格系数 −2”本身没有绝对意义；它是相对于误差尺度的效用变化。跨数据集直接比较 logit 系数，可能把尺度差异误当成偏好差异。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="iia-title"><span class="section-kicker">Interactive IIA lab</span><h2 id="iia-title">复制一家几乎相同的服务商，为什么总购买率会变？</h2>
+          <p>简单 logit 假定任意两选项的相对胜算不受其他选项影响，即 IIA。这个限制计算方便，但常给出过于机械的替代模式。</p>
+          <div class="lab"><p class="lab-label">互动实验</p><h3>农业服务版“红车—蓝车”问题</h3>
+            <div class="control-row"><label for="iia-utility">服务相对自营的可见效用</label><input id="iia-utility" type="range" min="-1.5" max="2" step="0.05" value="0.7"><span class="control-value" id="iia-utility-value">0.70</span></div>
+            <div class="decision-options"><label><input id="iia-duplicate" type="checkbox" checked>加入一家与 A 可见属性完全相同的服务商 B</label></div>
+            <div class="lab-output" id="iia-output" aria-live="polite"></div>
+            <canvas id="iia-canvas" width="760" height="300" role="img" aria-label="简单logit在一个或两个相同服务商下的预测份额">浏览器不支持画布时，请阅读上方数值结果。</canvas>
+          </div>
+          <div class="table-wrap"><table class="learning-table"><caption>打破简单 IIA 的常见办法</caption><thead><tr><th>方法</th><th>做了什么</th><th>仍需警惕</th></tr></thead><tbody>
+            <tr><td>Nested logit</td><td>先把相似选项放进同一巢，允许巢内相关</td><td>巢的划分来自经济逻辑，巢内仍有 IIA</td></tr>
+            <tr><td>Mixed logit / 随机系数</td><td>让价格、质量等系数在人群中分布</td><td>需要积分或模拟，分布和相关结构影响结果</td></tr>
+            <tr><td>潜在类别</td><td>把农户分成少数不可观测类型</td><td>类别数、初值和标签置换要检查；可用 EM</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="price-title"><span class="section-kicker">Endogenous prices</span><h2 id="price-title">价格内生：贵，可能正是因为你没看到它更好</h2>
+          <p>服务商知道自己的及时性、机械质量或本地需求，研究者却没有完全观察到。若高质量服务定价更高，价格就与未观测效用 ξ 正相关；直接 logit 甚至可能估出“越贵越受欢迎”。</p>
+          <div class="formula-box">平均效用 δⱼₜ = xⱼₜβ − αpⱼₜ + ξⱼₜ　；关键要求：找到 z 使 E[zⱼₜ·ξⱼₜ] = 0</div>
+          <h3>从简单 logit 到 BLP，计算上发生了什么？</h3>
+          <div class="pathway-strip">
+            <div class="path-step"><strong>观察份额</strong><span>定义市场、选项、外部选择与产品特征</span></div>
+            <div class="path-step"><strong>内层反演</strong><span>给定随机系数，找出能匹配观察份额的 δ</span></div>
+            <div class="path-step"><strong>构造误差</strong><span>由 δ−xβ+αp 得到未观测质量 ξ</span></div>
+            <div class="path-step"><strong>外层 GMM</strong><span>让工具变量与 ξ 的矩条件尽量接近 0</span></div>
+          </div>
+          <p>没有随机系数时，Berry 的简单份额反演是 δⱼ=log(sⱼ)−log(s₀)。BLP 加入随机系数后，需要模拟消费者并用收缩映射反复调整 δ；外层再用 IV/GMM 选参数。若要算价格反事实，通常还需供给侧一阶条件与边际成本。</p>
+          <div class="callout warning"><strong>工具变量不是名字清单：</strong>成本转移变量、竞争者特征、其他市场价格或差异化工具变量都可能被使用，但每一种都要解释为何影响价格、又为何不直接进入本地未观测需求。市场划分和工具支持不足时，复杂算法救不了识别。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="application-title"><span class="section-kicker">Development application</span><h2 id="application-title">农业机械化服务研究怎样选模型？</h2>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>政策问题</th><th>最小模型</th><th>关键新增数据</th></tr></thead><tbody>
+            <tr><td>补贴后是否购买服务</td><td>二元 logit/probit</td><td>外生净价格变化、未购买者</td></tr>
+            <tr><td>在自营和多家服务商中选谁</td><td>多项/混合 logit</td><td>完整选择集、每家价格质量、选择者特征</td></tr>
+            <tr><td>不同服务商怎样相互替代</td><td>随机系数需求</td><td>多市场份额、差异化特征、有效价格工具</td></tr>
+            <tr><td>补贴会否改变标价和进入</td><td>需求 + 供给/进入模型</td><td>企业成本、市场结构、进入退出</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <div class="module-pager"><a href="../">← 进阶地图</a><a href="../dynamic-choice/">路线 B：动态选择 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer>
+    <script src="../../../../assets/js/structural-advanced.js"></script>
+  </body>
+</html>

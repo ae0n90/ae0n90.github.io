@@ -23,7 +23,7 @@
           <p>这句话决定模型只需要一个静态二元选择起步。若问题改为“补贴会不会吸引服务商进入并改变市场价格”，就必须再加入供给和进入决策；不能靠同一个静态需求模型硬答。</p>
         </section>
 
-        <section class="content-section" aria-labelledby="pieces-title"><span class="section-kicker">Model anatomy</span><h2 id="pieces-title">结构模型的八块拼图</h2>
+        <section class="content-section" aria-labelledby="pieces-title"><span class="section-kicker">Model anatomy</span><h2 id="pieces-title">入门版八问：先把最小模型说完整</h2>
           <div class="concept-grid">
             <article class="concept-card"><span class="concept-tag">1 · 行动者</span><h2>谁在决定？</h2><p>农户决定是否购买机械化服务。教学版暂不让服务商同时定价。</p></article>
             <article class="concept-card"><span class="concept-tag">2 · 选择集</span><h2>能选什么？</h2><p>购买或不购买。真实项目要确认农户是否还有自有机械、人工、互助等外部选项。</p></article>
@@ -34,6 +34,25 @@
             <article class="concept-card"><span class="concept-tag">7 · 数据映射</span><h2>模型怎样生成可观测量？</h2><p>给定参数与农户特征，模型生成购买概率；这些概率应能复现采纳率及异质性。</p></article>
             <article class="concept-card"><span class="concept-tag">8 · 政策环境</span><h2>反事实改变什么？</h2><p>补贴只改变农户净价格。若供给能力和市场价格会响应，必须明确扩展模型。</p></article>
           </div>
+          <div class="callout blue">这八问是便于起步的压缩版，不是所有结构模型的完整目录。进入连续选择、动态模型或博弈前，还要把时间、均衡、异质性和分布选择逐项展开。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="audit-title"><span class="section-kicker">Full model audit</span><h2 id="audit-title">完整建模审计：十二个决定缺一项，反事实都可能变</h2>
+          <div class="checklist-grid">
+            <div class="check-item"><strong>行动者</strong>一个农户、家庭成员，还是农户与服务商？</div>
+            <div class="check-item"><strong>均衡范围</strong>价格和进入给定，还是由市场共同决定？</div>
+            <div class="check-item"><strong>规划期</strong>静态、有限期还是无限期？行动者是否前瞻？</div>
+            <div class="check-item"><strong>时间单位</strong>日、季、年怎样对应选择与状态变化？</div>
+            <div class="check-item"><strong>选择集合</strong>连续数量、有限菜单，还是二者组合？</div>
+            <div class="check-item"><strong>状态与转移</strong>什么概括今天，行动怎样改变明天？</div>
+            <div class="check-item"><strong>目标函数</strong>效用、利润、家庭福利或其他目标是什么？</div>
+            <div class="check-item"><strong>信息</strong>行动者看见什么？研究者又看见什么？</div>
+            <div class="check-item"><strong>可观测异质性</strong>规模、性别、地区怎样改变收益或约束？</div>
+            <div class="check-item"><strong>不可观测异质性</strong>永久类型、临时冲击与不确定性要分开。</div>
+            <div class="check-item"><strong>函数形式</strong>线性、对数、CES 等限制为何适合问题？</div>
+            <div class="check-item"><strong>分布</strong>logit、正态或离散类型怎样影响替代与尾部？</div>
+          </div>
+          <p>如果某项被固定或忽略，也要把它写成假设。例如“静态”不是没想过未来，而是假定未来价值不会因本期选择而改变。</p>
         </section>
 
         <section class="content-section" aria-labelledby="equation-title"><span class="section-kicker">A small model</span><h2 id="equation-title">把故事写成最小可估计模型</h2>

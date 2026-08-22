@@ -16,6 +16,23 @@
         <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 4</div>
         <header class="course-hero"><span class="module-kicker">Module 4 · 约 70 分钟</span><h1>MLE、GMM、SMM<br>到底在做什么？</h1><p>四个缩写不需要分别死记。它们都在建立一个“模型与数据的对账规则”，再寻找让账最接近的参数。</p></header>
 
+        <section class="content-section" aria-labelledby="layers-title"><span class="section-kicker">Three computational layers</span><h2 id="layers-title">先拆开三件事：解模型、算分数、找参数</h2>
+          <p>简单 logit 把三件事挤在一起，所以容易误以为“估计就是按一个命令”。复杂结构模型通常要分层：</p>
+          <div class="pathway-strip">
+            <div class="path-step"><strong>给一组参数 θ</strong><span>这只是候选答案</span></div>
+            <div class="path-step"><strong>解行为/均衡</strong><span>算选择概率、价值或市场份额</span></div>
+            <div class="path-step"><strong>算目标函数</strong><span>似然、矩距离或辅助参数差</span></div>
+            <div class="path-step"><strong>优化器换 θ</strong><span>重复直到目标不再改善</span></div>
+          </div>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>模型</th><th>内层在解什么</th><th>外层怎样估参数</th></tr></thead><tbody>
+            <tr><td>静态 logit</td><td>选择概率有闭式解，几乎看不见内层</td><td>MLE</td></tr>
+            <tr><td>BLP 随机系数需求</td><td>模拟份额并收缩反演平均效用 δ</td><td>IV/GMM</td></tr>
+            <tr><td>动态离散选择 NFXP</td><td>每组 θ 都解 Bellman 固定点</td><td>MLE</td></tr>
+            <tr><td>不完全信息进入博弈</td><td>解相互一致的进入概率固定点</td><td>伪似然、约束优化或其他方法</td></tr>
+          </tbody></table></div>
+          <div class="callout warning"><strong>收敛有两层：</strong>内层模型可能没解准，外层优化器却仍报告“成功”；也可能内层准确、外层停在局部最优。正式代码必须分别记录容差、迭代次数和多初值结果。</div>
+        </section>
+
         <section class="content-section" aria-labelledby="unified-title"><span class="section-kicker">One map</span><h2 id="unified-title">统一地图：先问模型能给你什么</h2>
           <div class="table-wrap"><table class="learning-table"><caption>从模型输出到估计方法</caption><thead><tr><th>模型可以计算什么</th><th>典型方法</th><th>对账对象</th><th>核心问题</th></tr></thead><tbody>
             <tr><td>每个真实选择发生的概率</td><td>MLE</td><td>整份数据的似然</td><td>哪组参数让观察到的数据最可能？</td></tr>

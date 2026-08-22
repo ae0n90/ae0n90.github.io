@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>D. 选择模型、LATE 与 MTE | 结构估计进阶</title>
+    <meta name="description" content="用培训、信贷与农业服务案例理解样本选择、Heckman控制函数、LATE、MTE及政策外推。">
+    <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/advanced/selection-mte/">
+    <link rel="stylesheet" href="../../../../assets/css/site.css"><link rel="stylesheet" href="../../../../assets/css/learning.css">
+  </head>
+  <body class="advanced-course">
+    <header class="site-header"><a class="brand" href="../../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../../about/">About</a><a href="../../../../research/">Research</a><a href="../../../../publications/">Publications</a><a href="../../../../teaching/">Teaching</a><a href="../../../../resources/">Resources</a><a aria-current="page" href="../../../">AI Learning</a><a href="../../../../cv/">CV</a></nav></header>
+    <div class="course-shell">
+      <aside class="course-sidebar" aria-label="进阶课程目录"><span class="course-label">Advanced bridge</span><h2>结构估计进阶</h2><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li class="course-nav-divider">四条路线</li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li></ol></aside>
+      <main class="course-main">
+        <details class="course-mobile-nav"><summary>进阶课程目录 · 路线 D</summary><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a href="../dynamic-choice/"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../../">AI Learning</a><span>/</span><a href="../../">结构估计</a><span>/</span><a href="../">进阶</a><span>/</span>选择与 MTE</div>
+        <header class="course-hero"><span class="module-kicker">Route D · 约 55 分钟</span><h1>选择模型与 MTE<span>平均效应变了，可能只是政策改变了“谁参加”</span></h1><p>农户是否贷款、参加培训、购买保险或采用服务往往不是随机的。选择模型把“参与决定”和“参与后的结果”放在同一套潜在结果框架里。</p></header>
+        <noscript><div class="callout warning">正文可以直接阅读；MTE 政策阈值实验需要启用 JavaScript。</div></noscript>
+
+        <section class="content-section" aria-labelledby="selection-title"><span class="section-kicker">The selection problem</span><h2 id="selection-title">先区分两种“看不见”</h2>
+          <div class="compare-grid">
+            <article><h3>样本选择</h3><p>结果只对被选中的人可见。例如只观察外出务工者工资，留村者的外出工资是缺失的。</p></article>
+            <article><h3>处理自选择</h3><p>所有人的结果可能可见，但参加培训的人与未参加者在潜在收益上不同。我们永远看不到同一人的两种潜在结果。</p></article>
+          </div>
+          <div class="callout warning"><strong>“控制更多变量”并不自动解决：</strong>若未观测能力、风险偏好或预期收益同时影响参与和结果，条件均值回归仍有选择偏误。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="heckman-title"><span class="section-kicker">Heckman selection</span><h2 id="heckman-title">Heckit：先解释谁进入样本，再修正结果方程</h2>
+          <div class="formula-box">选择：S = 1[Zγ + η &gt; 0]　；结果：Y = Xβ + ε，仅在 S=1 时观察</div>
+          <p>如果 η 与 ε 相关，进入样本的人就带有系统不同的结果误差。经典两步法先用 probit 估计选择概率，再把由此算出的逆米尔斯比率加入结果方程，作为控制函数。</p>
+          <div class="pathway-strip">
+            <div class="path-step"><strong>选择方程</strong><span>估计谁会被观察/参与</span></div>
+            <div class="path-step"><strong>控制函数</strong><span>把选择带来的误差条件均值写出来</span></div>
+            <div class="path-step"><strong>结果方程</strong><span>在选择样本中加入修正项</span></div>
+            <div class="path-step"><strong>联合推断</strong><span>修正两步标准误或 bootstrap</span></div>
+          </div>
+          <h3>为什么最好有排除变量？</h3>
+          <p>Z 中至少有一个变量影响是否进入样本，却不直接影响结果。例如到招工点距离可以影响是否外出，但“距离不直接影响外出后的工资”仍需认真论证。没有排除变量时，识别主要依靠正态分布带来的非线性，通常很脆弱。</p>
+          <div class="callout blue"><strong>控制函数与 IV 的亲缘：</strong>两者都试图把内生选择中与结果误差相关的部分隔离出来。控制函数通常比一个线性第一阶段要求更多分布或函数形式，也能回答更细的异质性问题。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="late-title"><span class="section-kicker">From LATE to MTE</span><h2 id="late-title">LATE 不是“总体平均”，它是被工具变量推动的那群人</h2>
+          <p>把参与写成一个阈值决定：</p>
+          <div class="formula-box">D = 1[P(Z) ≥ U]　；P(Z) 是工具变量给出的参与倾向，U∈[0,1] 是未观测参与阻力</div>
+          <p>在独立性、排除限制和单调性等条件下，提高工具变量只会把阈值附近的人推入项目。二元工具变量把人分成：</p>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>类型</th><th>Z 低时</th><th>Z 高时</th><th>IV 能看到什么</th></tr></thead><tbody>
+            <tr><td>总会参加者</td><td>参加</td><td>参加</td><td>只观察其参加结果</td></tr>
+            <tr><td>服从者</td><td>不参加</td><td>参加</td><td>两种状态都被工具变化覆盖，形成 LATE</td></tr>
+            <tr><td>从不参加者</td><td>不参加</td><td>不参加</td><td>只观察其不参加结果</td></tr>
+            <tr><td>反向者</td><td>参加</td><td>不参加</td><td>单调性假设排除这一类</td></tr>
+          </tbody></table></div>
+          <div class="callout warning">“鼓励变量显著”不等于排除限制成立；“一阶段很强”也不等于 LATE 能代表目标政策的人群。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="mte-title"><span class="section-kicker">Interactive MTE lab</span><h2 id="mte-title">MTE：沿着参与阻力，逐点问“这类人的处理效应是多少”</h2>
+          <div class="formula-box">MTE(u) = E[Y₁ − Y₀ | U = u]</div>
+          <p>低 U 的人很容易参加，可能本来就最受益；高 U 的人需要很强激励才参加，效应可能更小。ATE、ATT、ATU 和每个 LATE 都是同一条 MTE 曲线的不同加权平均。</p>
+          <div class="lab"><p class="lab-label">政策阈值实验</p><h3>改变参与倾向，看看新政策覆盖的是谁</h3><p>蓝线设为 MTE(u)=4−6u，仅为教学函数。阴影是两个政策阈值之间受到政策改变的人群。</p>
+            <div class="control-row"><label for="mte-baseline">基准参与阈值 p₀</label><input id="mte-baseline" type="range" min="0.05" max="0.95" step="0.01" value="0.25"><span class="control-value" id="mte-baseline-value">0.25</span></div>
+            <div class="control-row"><label for="mte-policy">新政策参与阈值 p₁</label><input id="mte-policy" type="range" min="0.05" max="0.95" step="0.01" value="0.65"><span class="control-value" id="mte-policy-value">0.65</span></div>
+            <div class="lab-output" id="mte-output" aria-live="polite"></div>
+            <canvas id="mte-canvas" width="760" height="310" role="img" aria-label="参与阻力与边际处理效应曲线及政策阈值">浏览器不支持画布时，请阅读上方数值结果。</canvas>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="weights-title"><span class="section-kicker">Policy weights</span><h2 id="weights-title">同一项目可以有多个都正确、但回答不同问题的处理效应</h2>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>对象</th><th>主要加权谁</th><th>典型政策问题</th></tr></thead><tbody>
+            <tr><td>ATE</td><td>总体各类 U</td><td>随机给全体时平均效果怎样</td></tr>
+            <tr><td>ATT</td><td>当前已经参加者</td><td>现有项目对实际参与者怎样</td></tr>
+            <tr><td>ATU</td><td>当前未参加者</td><td>扩张到未参与者可能怎样</td></tr>
+            <tr><td>LATE</td><td>某个工具变化推动的服从者</td><td>这次鼓励/资格变化对边际参与者怎样</td></tr>
+            <tr><td>PRTE</td><td>具体新政策改变参与概率所覆盖的人</td><td>从旧规则切换到新规则的政策效果</td></tr>
+          </tbody></table></div>
+          <p>因此，从一个资格阈值的 LATE 推到普惠补贴，必须知道新政策会把 U 分布的哪一段推入项目，并且数据对那一段有支持。</p>
+        </section>
+
+        <section class="content-section" aria-labelledby="application-title"><span class="section-kicker">Development application</span><h2 id="application-title">农业培训或服务券：从“有没有效”升级到“扩给谁”</h2>
+          <ol><li><strong>先定义政策边际：</strong>降低报名距离、提高补贴还是放宽资格，会推动不同阻力的人。</li><li><strong>解释 U：</strong>若工具是价格，U 可能接近支付意愿/净收益阻力；若工具是距离，U 的经济含义可能不同。</li><li><strong>检查支持：</strong>倾向得分是否覆盖计划扩张到的区间？没有数据的高 U 区域只能靠函数形式外推。</li><li><strong>分开参与与结果：</strong>政策可能提高参与率，但新增参与者的平均收益低于原参与者。</li><li><strong>报告政策相关对象：</strong>不仅给 IV/LATE，还要说明目标政策需要 ATE、ATT 还是 PRTE。</li></ol>
+          <div class="callout warning"><strong>MTE 也不是无假设答案：</strong>连续工具的支持、单调选择结构、潜在结果关于 U 的函数形式以及工具的排除限制都要接受检验和敏感性分析。</div>
+        </section>
+
+        <section class="content-section" aria-labelledby="finish-title"><span class="section-kicker">What you should retain</span><h2 id="finish-title">进阶四页最后要留下的不是缩写，而是四个判断</h2>
+          <div class="checklist-grid">
+            <div class="check-item"><strong>选择的形状</strong>连续数量还是离散菜单？替代模式是否可信？</div>
+            <div class="check-item"><strong>时间</strong>今天的行动是否改变未来状态和价值？</div>
+            <div class="check-item"><strong>互动</strong>一个人的收益是否取决于其他人的行动？</div>
+            <div class="check-item"><strong>参与边际</strong>政策改变的是哪一群人的选择和处理效应？</div>
+            <div class="check-item"><strong>计算</strong>是在解模型、算目标函数，还是在搜索参数？</div>
+            <div class="check-item"><strong>证据边界</strong>关键参数、均衡和外推区间分别靠什么数据支持？</div>
+          </div>
+        </section>
+
+        <div class="module-pager"><a href="../games/">← 路线 C</a><a href="../">返回进阶地图 →</a></div>
+      </main>
+    </div>
+    <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../../assets/js/structural-advanced.js"></script>
+  </body>
+</html>
