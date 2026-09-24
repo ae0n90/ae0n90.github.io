@@ -39,6 +39,7 @@ Then open <http://localhost:8000>.
 - `learning/structural-estimation/`: seven-module structural estimation course
 - `cv/index.html`: CV and external profile links
 - `assets/css/site.css`: site design
+- `assets/fonts/`: self-hosted Source Serif 4 (SIL OFL 1.1), so no external font host is needed in mainland China
 
 ## GitHub Pages Deployment
 
