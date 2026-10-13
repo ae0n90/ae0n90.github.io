@@ -45,7 +45,7 @@
       const complete = Boolean(progress[button.dataset.completeModule]);
       button.classList.toggle("is-complete", complete);
       button.setAttribute("aria-pressed", String(complete));
-      button.textContent = complete ? "✓ 本模块已完成（点击可撤销）" : "标记本模块为已完成";
+      button.textContent = complete ? "本模块已完成（再次点击可撤销）" : "标记本模块为已完成";
     });
   }
 
@@ -126,10 +126,10 @@
         message = "结构模型值得考虑，但仍应尽量用实验、DID、IV 或其他外生变化识别和验证关键参数。";
       }
       if (checked.length === 1 && checked.includes("past-effect")) {
-        message = "如果目标只是可信地估计已发生政策的平均效果，设计型方法通常更直接；不必为了“高级”而上结构模型。";
+        message = "若目标只是估计已实施政策的平均效果，实验、DID、IV 等设计型方法通常更直接，不需要结构模型。";
       }
       if (checked.includes("no-data")) {
-        message = "暂不适合估计结构模型：先确认数据能观察选择、状态、价格/约束，并能为关键参数提供识别。";
+        message = "目前不宜估计结构模型。应先确认数据中有选择、状态、价格或约束等变量，并且能够识别关键参数。";
       }
       output.textContent = message;
     });
@@ -316,7 +316,7 @@
         draw(x);
         if (step > 0.012) window.setTimeout(iterate, 120);
         else {
-          output.textContent += "\n收敛到 x≈2。真实结构估计还必须检查多组初值、边界和收敛诊断。";
+          output.textContent += "\n已收敛到 x≈2。实际的结构估计还应检查多组初值、参数边界和收敛诊断。";
           button.disabled = false;
         }
       }
@@ -389,7 +389,7 @@
       document.getElementById("smm-rho-value").textContent = rho.toFixed(2);
       document.getElementById("smm-sigma-value").textContent = sigma.toFixed(2);
       const result = distance(rho, sigma);
-      output.textContent = `数据矩：SD=${observedMoments.sd.toFixed(3)}, AC(1)=${observedMoments.ac.toFixed(3)}\n模拟矩：SD=${result.moments.sd.toFixed(3)}, AC(1)=${result.moments.ac.toFixed(3)}\n标准化矩距离=${result.value.toFixed(4)}（越小越好）`;
+      output.textContent = `数据矩：SD=${observedMoments.sd.toFixed(3)}, AC(1)=${observedMoments.ac.toFixed(3)}\n模拟矩：SD=${result.moments.sd.toFixed(3)}, AC(1)=${result.moments.ac.toFixed(3)}\n标准化矩距离=${result.value.toFixed(4)}（数值越小，模拟矩与数据矩越接近）`;
       drawSeries("smm-canvas", result.simulated.slice(-160), "#326b91", observed.slice(-160));
     }
 
@@ -498,7 +498,7 @@
       document.getElementById("mech-alpha-value").textContent = alpha.toFixed(2);
       document.getElementById("mech-beta-value").textContent = beta.toFixed(2);
       document.getElementById("mech-subsidy-value").textContent = `${Math.round(100 * subsidy)}%`;
-      estimateOutput.textContent = `当前参数：价格系数 α=${alpha.toFixed(2)}，规模系数 β=${beta.toFixed(2)}；对数似然=${logLikelihood(alpha, beta).toFixed(1)}。\n教学数据真值：α*=-1.40，β*=0.75；估计值不会与真值完全相等，因为存在抽样误差。`;
+      estimateOutput.textContent = `当前参数：价格系数 α=${alpha.toFixed(2)}，规模系数 β=${beta.toFixed(2)}；对数似然=${logLikelihood(alpha, beta).toFixed(1)}。\n模拟数据的真值：α*=-1.40，β*=0.75；估计值不会与真值完全相等，因为存在抽样误差。`;
       const stats = policyStats(alpha, beta, subsidy);
       policyOutput.textContent = `无补贴预测采纳率 ${(100 * stats.baseline).toFixed(1)}%\n补贴后预测采纳率 ${(100 * stats.counterfactual).toFixed(1)}%\n变化 ${((stats.counterfactual - stats.baseline) * 100).toFixed(1)} 个百分点；每户预期财政成本 ${stats.cost.toFixed(3)} 个价格单位。`;
       drawPolicy(alpha, beta, subsidy);
@@ -543,22 +543,22 @@
 
   const QUIZ = [
     {
-      q: "什么时候最值得考虑结构模型？",
+      q: "在下列哪种情况下应考虑使用结构模型？",
       options: ["只想描述样本均值", "需要预测未实施政策并刻画行为反应", "只想提高显著性", "数据越少越适合"],
       answer: 1,
-      why: "结构模型的主要收益是把行为约束写清，并在明确假设下做政策外推；它不是显著性工具。"
+      why: "结构模型的主要作用是明确设定行为约束，并在给定假设下进行政策外推；它与提高显著性无关。"
     },
     {
       q: "“偏好参数在政策变化后保持不变”应被怎样理解？",
       options: ["永远成立的定理", "结构估计自动保证", "需要论证和检验的稳定性假设", "只与样本量有关"],
       answer: 2,
-      why: "所谓深层参数的政策稳定性是一项实质假设，不是贴上 structural 标签后自动获得。"
+      why: "深层参数在政策变化下保持不变是一项实质性假设，需要论证和检验，并不因使用结构模型而自动成立。"
     },
     {
-      q: "矩条件 E[z·u]=0 的准确直觉是什么？",
+      q: "矩条件 E[z·u]=0 的含义是什么？",
       options: ["z 与 u 的样本均值都为零", "在真参数下，工具变量与结构误差正交", "回归 R² 等于零", "所有变量相互独立"],
       answer: 1,
-      why: "正交是乘积的期望为零；它通常来自经济假设或实验设计，并不等同于所有变量独立。"
+      why: "正交指乘积的期望为零。这一条件通常来自经济假设或实验设计，比所有变量相互独立弱得多。"
     },
     {
       q: "AR(1) 中 ε_t~N(0,σ²)，σ 表示什么？",
@@ -567,7 +567,7 @@
       why: "写作 N(0,σ²) 时，σ 是标准差；ρ 与 σ 都会影响平稳分布的长期波动。"
     },
     {
-      q: "SMM 与 GMM 的关系最准确的是？",
+      q: "关于 SMM 与 GMM 的关系，下列哪一项正确？",
       options: ["完全无关", "SMM 用模拟近似模型矩，可看作模拟版矩估计", "SMM 一定比 GMM 准", "GMM 不需要识别"],
       answer: 1,
       why: "SMM 用模拟得到模型矩，再最小化模型矩与数据矩的距离；仍需选择矩、权重矩阵并论证识别。"
@@ -576,31 +576,31 @@
       q: "如果价格由服务商根据不可观测需求定价，直接 logit MLE 的价格系数会怎样？",
       options: ["必然正确", "可能因价格内生性而有偏", "自动成为工具变量", "只影响标准误"],
       answer: 1,
-      why: "价格与未观测需求/质量相关时需要实验价格变化、工具变量或供需联合模型。"
+      why: "价格与未观测的需求或质量相关时，需要利用实验造成的价格变化、工具变量，或估计供需联合模型。"
     },
     {
-      q: "结构模型的样本外验证为什么重要？",
+      q: "结构模型样本外验证的作用是什么？",
       options: ["让表格更长", "检验模型能否预测估计时未使用的事实或政策冲击", "替代识别", "保证反事实一定正确"],
       answer: 1,
-      why: "验证不能证明模型为真，但能发现模型无法解释的事实，约束反事实可信度。"
+      why: "样本外验证不能证明模型正确，但能发现模型无法解释的事实，从而帮助判断反事实结果的可信程度。"
     },
     {
-      q: "Todd–Wolpin 的 PROGRESA 案例最值得学习的设计是什么？",
-      options: ["只报告拟合优度", "用实验政策效果验证未使用政策后数据估计的动态模型", "完全不使用数据", "只做静态 OLS"],
+      q: "Todd 与 Wolpin 对 PROGRESA 的研究在设计上的主要特点是什么？",
+      options: ["只报告拟合优度", "用对照组数据估计动态模型，再用实验组的政策效果做样本外检验", "完全不使用数据", "只做静态 OLS"],
       answer: 1,
-      why: "该研究把随机实验作为模型验证标尺，再比较不同补贴方案，是结构与设计型证据结合的经典例子。"
+      why: "该研究用随机实验检验结构模型的预测，再比较不同的补贴方案，是结构估计与实验证据相结合的典型例子。"
     },
     {
-      q: "反事实补贴模拟最需要同时报告什么？",
+      q: "报告反事实补贴模拟结果时，还应同时报告什么？",
       options: ["只有一个点估计", "参数与模型不确定性、适用范围及供给反应限制", "只报告显著星号", "删除不合预期结果"],
       answer: 1,
-      why: "反事实依赖参数、函数形式、均衡与外推区间；敏感性和限制是结果的一部分。"
+      why: "反事实结果依赖于参数、函数形式、均衡假设和外推区间，敏感性分析和适用范围应与结果一并报告。"
     },
     {
-      q: "开始自己的第一个结构项目，最稳妥的顺序是？",
-      options: ["先做最大模型", "先写反事实结论", "小模型→模拟回收真值→真实数据→拟合/验证→反事实", "跳过识别直接优化"],
+      q: "开始一个结构估计项目时，较合理的工作顺序是什么？",
+      options: ["先做最大模型", "先写反事实结论", "简单模型→模拟数据检验→真实数据估计→拟合与验证→反事实", "跳过识别直接优化"],
       answer: 2,
-      why: "先用小模型和蒙特卡洛确认代码与识别，再进入真实数据和政策模拟，最容易定位错误。"
+      why: "先用简单模型和蒙特卡洛检验确认程序与识别，再估计真实数据并进行政策模拟，这样便于发现错误。"
     }
   ];
 
@@ -650,7 +650,7 @@
           if (optionIndex === item.answer) button.classList.add("correct");
           if (optionIndex === answer && answer !== item.answer) button.classList.add("wrong");
         });
-        feedback.textContent = `${answer === item.answer ? "答对了。" : "答案需要再想一想。"}${item.why}`;
+        feedback.textContent = `${answer === item.answer ? "回答正确。" : "回答错误。"}${item.why}`;
       }
 
       article.appendChild(options);
@@ -662,7 +662,7 @@
     function updateScore() {
       const answered = Object.keys(saved).length;
       const correct = QUIZ.reduce((sum, item, index) => sum + (saved[index] === item.answer ? 1 : 0), 0);
-      score.textContent = `已答 ${answered} / ${QUIZ.length} 题；答对 ${correct} 题。${answered === QUIZ.length ? (correct >= 8 ? " 已达到入门验收线。" : " 建议回看错题对应模块。") : ""}`;
+      score.textContent = `已答 ${answered} / ${QUIZ.length} 题；答对 ${correct} 题。${answered === QUIZ.length ? (correct >= 8 ? " 已掌握本课程的基本内容。" : " 建议复习答错题目对应的模块。") : ""}`;
     }
 
     const reset = document.getElementById("quiz-reset");

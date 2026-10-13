@@ -2,8 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>2. 从研究问题到模型 | 结构估计入门</title>
-    <meta name="description" content="以农业机械化服务采纳为主线，把研究问题拆成行动者、状态、选择、收益、冲击、识别、估计、验证和反事实。">
+    <title>2. 模型的设定 | 结构估计入门</title>
+    <meta name="description" content="以农机服务采纳为例，说明决策者、状态变量、选择集、收益、随机项、识别、估计、验证和反事实的设定。">
     <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/model-building/">
     <link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/learning.css">
   </head>
@@ -11,33 +11,33 @@
     <header class="site-header"><a class="brand" href="../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../about/">About</a><a href="../../../research/">Research</a><a href="../../../publications/">Publications</a><a href="../../../teaching/">Teaching</a><a href="../../../resources/">Resources</a><a aria-current="page" href="../../">AI Learning</a><a href="../../../cv/">CV</a></nav></header>
     <div class="course-shell">
       <aside class="course-sidebar" aria-label="课程目录"><span class="course-label">Structural estimation</span><h2>结构估计入门</h2><div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div>
-        <ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a aria-current="page" data-course-nav-module="model" href="./"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>逐步精讲：读懂结构模型</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型 SEM 对照</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol>
+        <ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li><li><a aria-current="page" data-course-nav-module="model" href="./"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li></ol>
       </aside>
       <main class="course-main">
-        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li><li><a aria-current="page" data-course-nav-module="model" href="./"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>逐步精讲：读懂结构模型</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型 SEM 对照</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li></ol></details>
+        <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary><ol class="course-nav"><li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li><li><a data-course-nav-module="why" href="../why-structure/"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li><li><a aria-current="page" data-course-nav-module="model" href="./"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li><li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li><li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li><li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li><li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li><li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li></ol></details>
         <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 2</div>
-        <header class="course-hero"><span class="module-kicker">Module 2 · 约 40 分钟</span><h1>从研究问题<br>到可估计模型</h1><p>模型不是先写一堆公式，而是把“谁在什么约束下、根据什么信息、做什么选择”逐项说清，再把这些对象映射到数据。</p></header>
+        <header class="course-hero"><span class="module-kicker">模块 2</span><h1>模型的设定</h1><p>设定结构模型，首先要说明谁在决策、面临什么约束、掌握什么信息、在哪些选项中选择，然后说明这些对象与数据中哪些变量相对应。本模块以农户购买农机作业服务为例说明这一过程。</p></header>
 
-        <section class="content-section" aria-labelledby="question-title"><span class="section-kicker">Step 0</span><h2 id="question-title">先把政策问题压成一句可检验的话</h2>
-          <div class="callout blue"><strong>主线问题：</strong>机械化服务补贴通过降低农户的实际支付价格，能把多少农户从“不购买”推到“购买”？不同经营规模的反应是否不同？</div>
-          <p>这句话决定模型只需要一个静态二元选择起步。若问题改为“补贴会不会吸引服务商进入并改变市场价格”，就必须再加入供给和进入决策；不能靠同一个静态需求模型硬答。</p>
+        <section class="content-section" aria-labelledby="question-title"><span class="section-kicker">2.1</span><h2 id="question-title">研究问题</h2>
+          <div class="callout blue"><strong>研究问题：</strong>机械化服务补贴降低了农户的实际支付价格，这会使多少原本不购买的农户转为购买？不同经营规模农户的反应是否不同？</div>
+          <p>对这一问题，静态二元选择模型已经足够。若问题改为补贴是否会吸引服务商进入并改变市场价格，则需要在模型中加入供给方和进入决策，仅有静态需求模型无法回答。</p>
         </section>
 
-        <section class="content-section" aria-labelledby="pieces-title"><span class="section-kicker">Model anatomy</span><h2 id="pieces-title">入门版八问：先把最小模型说完整</h2>
+        <section class="content-section" aria-labelledby="pieces-title"><span class="section-kicker">2.2</span><h2 id="pieces-title">模型的基本构成</h2>
           <div class="concept-grid">
-            <article class="concept-card"><span class="concept-tag">1 · 行动者</span><h2>谁在决定？</h2><p>农户决定是否购买机械化服务。教学版暂不让服务商同时定价。</p></article>
-            <article class="concept-card"><span class="concept-tag">2 · 选择集</span><h2>能选什么？</h2><p>购买或不购买。真实项目要确认农户是否还有自有机械、人工、互助等外部选项。</p></article>
-            <article class="concept-card"><span class="concept-tag">3 · 状态与信息</span><h2>决策时知道什么？</h2><p>服务价格、地块规模、距离与质量。动态模型还要加入未来状态及预期。</p></article>
-            <article class="concept-card"><span class="concept-tag">4 · 收益与约束</span><h2>为什么这样选？</h2><p>服务节约劳动、提高作业及时性，但要支付价格和交通/搜寻成本。</p></article>
-            <article class="concept-card"><span class="concept-tag">5 · 随机项</span><h2>研究者看不到什么？</h2><p>未观测偏好或临时冲击。分布假设决定选择概率的形式，不只是“塞一个误差项”。</p></article>
-            <article class="concept-card"><span class="concept-tag">6 · 参数</span><h2>要从数据挖什么？</h2><p>价格敏感度、经营规模收益、距离成本等。参数必须有单位和经济含义。</p></article>
-            <article class="concept-card"><span class="concept-tag">7 · 数据映射</span><h2>模型怎样生成可观测量？</h2><p>给定参数与农户特征，模型生成购买概率；这些概率应能复现采纳率及异质性。</p></article>
-            <article class="concept-card"><span class="concept-tag">8 · 政策环境</span><h2>反事实改变什么？</h2><p>补贴只改变农户净价格。若供给能力和市场价格会响应，必须明确扩展模型。</p></article>
+            <article class="concept-card"><span class="concept-tag">1 · 行动者</span><h2>决策者</h2><p>农户决定是否购买机械化服务。本例不考虑服务商的定价决策。</p></article>
+            <article class="concept-card"><span class="concept-tag">2 · 选择集</span><h2>选择集</h2><p>购买或不购买。实证研究中还应考虑自有机械、雇工、换工等其他选项。</p></article>
+            <article class="concept-card"><span class="concept-tag">3 · 状态与信息</span><h2>状态变量与信息</h2><p>服务价格、经营规模、距离与服务质量。动态模型还需加入未来状态及农户的预期。</p></article>
+            <article class="concept-card"><span class="concept-tag">4 · 收益与约束</span><h2>收益与约束</h2><p>购买服务可以节约劳动、提高作业及时性，但需支付服务价格以及交通和搜寻成本。</p></article>
+            <article class="concept-card"><span class="concept-tag">5 · 随机项</span><h2>随机项</h2><p>代表研究者观测不到的偏好或临时冲击。随机项的分布假设决定选择概率的函数形式，是模型设定的一部分。</p></article>
+            <article class="concept-card"><span class="concept-tag">6 · 参数</span><h2>参数</h2><p>价格敏感度、经营规模的收益、距离成本等。每个参数都应有明确的单位和经济含义。</p></article>
+            <article class="concept-card"><span class="concept-tag">7 · 数据映射</span><h2>模型与数据的对应</h2><p>给定参数与农户特征，模型给出每户的购买概率；这些概率应能再现观测到的采纳率及其在农户间的差异。</p></article>
+            <article class="concept-card"><span class="concept-tag">8 · 政策环境</span><h2>政策变量</h2><p>补贴只改变农户支付的净价格。若供给能力和市场价格也会随补贴变化，就必须扩展模型。</p></article>
           </div>
-          <div class="callout blue">这八问是便于起步的压缩版，不是所有结构模型的完整目录。进入连续选择、动态模型或博弈前，还要把时间、均衡、异质性和分布选择逐项展开。</div>
+          <div class="callout blue">以上八项只适用于简单的静态模型。对于连续选择、动态模型或博弈模型，还需要逐项说明时间结构、均衡概念、异质性和分布假设（见下节）。</div>
         </section>
 
-        <section class="content-section" aria-labelledby="audit-title"><span class="section-kicker">Full model audit</span><h2 id="audit-title">完整建模审计：十二个决定缺一项，反事实都可能变</h2>
+        <section class="content-section" aria-labelledby="audit-title"><span class="section-kicker">2.3</span><h2 id="audit-title">完整模型需要说明的十二项设定</h2>
           <div class="checklist-grid">
             <div class="check-item"><strong>行动者</strong>一个农户、家庭成员，还是农户与服务商？</div>
             <div class="check-item"><strong>均衡范围</strong>价格和进入给定，还是由市场共同决定？</div>
@@ -52,32 +52,32 @@
             <div class="check-item"><strong>函数形式</strong>线性、对数、CES 等限制为何适合问题？</div>
             <div class="check-item"><strong>分布</strong>logit、正态或离散类型怎样影响替代与尾部？</div>
           </div>
-          <p>如果某项被固定或忽略，也要把它写成假设。例如“静态”不是没想过未来，而是假定未来价值不会因本期选择而改变。</p>
+          <p>任何一项设定的改变都可能改变反事实结论。若某一项被固定或忽略，也应作为假设明确写出。例如，“静态模型”意味着假定本期选择不影响未来价值。</p>
         </section>
 
-        <section class="content-section" aria-labelledby="equation-title"><span class="section-kicker">A small model</span><h2 id="equation-title">把故事写成最小可估计模型</h2>
+        <section class="content-section" aria-labelledby="equation-title"><span class="section-kicker">2.4</span><h2 id="equation-title">可估计的模型</h2>
           <p>令农户购买服务相对于不购买的效用差为：</p>
           <div class="formula-box">ΔUᵢ = β₀ + α × 净服务价格ᵢ + β × log(1 + 经营规模ᵢ)<br>　　　+ γ × 距离ᵢ + δ × 服务质量ᵢ + εᵢ<br><br>若 ΔUᵢ &gt; 0，则购买；否则不购买。</div>
           <ul>
             <li><strong>α 应为负：</strong>净价格越高，购买意愿越低。</li>
             <li><strong>β 通常为正：</strong>经营规模越大，使用专业化服务的收益可能越高。</li>
             <li><strong>γ 通常为负：</strong>离服务供给点越远，搜寻与协调成本越高。</li>
-            <li><strong>ε 的分布：</strong>教学版采用 logistic 差分对应的 logit 概率；这是一项可检验、可质疑的建模选择。</li>
+            <li><strong>ε 的分布：</strong>本例假定 ε 服从 logistic 分布，由此得到 logit 选择概率。这一假设可以检验，也可以替换。</li>
           </ul>
-          <div class="callout warning">不能把所有变量都称为“深层参数”。经营规模和距离是状态/特征，补贴是政策变量；α、β、γ、δ 才是模型拟估的行为参数。</div>
+          <div class="callout warning">应区分变量与参数。经营规模和距离是农户的状态或特征，补贴是政策变量；α、β、γ、δ 才是待估计的行为参数。</div>
         </section>
 
-        <section class="content-section" aria-labelledby="identify-title"><span class="section-kicker">Identification map</span><h2 id="identify-title">每个参数靠什么变化识别？</h2>
-          <div class="table-wrap"><table class="learning-table"><caption>参数—数据—假设对应表</caption><thead><tr><th>参数</th><th>主要数据变化</th><th>关键威胁</th><th>教学版处理</th></tr></thead><tbody>
+        <section class="content-section" aria-labelledby="identify-title"><span class="section-kicker">2.5</span><h2 id="identify-title">参数的识别</h2>
+          <div class="table-wrap"><table class="learning-table"><caption>各参数的识别来源与主要威胁</caption><thead><tr><th>参数</th><th>主要数据变化</th><th>关键威胁</th><th>本例的处理</th></tr></thead><tbody>
             <tr><td>价格敏感度 α</td><td>随机发放代金券造成的净价格变化</td><td>代金券可能同时传递信息或改变服务质量</td><td>假设代金券只通过价格起作用</td></tr>
             <tr><td>规模收益 β</td><td>不同经营规模农户的采纳差异</td><td>规模与能力、机械条件等未观测因素相关</td><td>教学数据中相关变量均由模型生成</td></tr>
-            <tr><td>距离成本 γ</td><td>距离与采纳率的梯度</td><td>服务商可能选择在高需求地区布局</td><td>教学版把距离视为外生；真实研究需论证</td></tr>
+            <tr><td>距离成本 γ</td><td>距离与采纳率的梯度</td><td>服务商可能选择在高需求地区布局</td><td>本例把距离视为外生；实证研究需论证</td></tr>
             <tr><td>质量偏好 δ</td><td>服务质量差异与选择</td><td>质量测量误差、价格与质量共同决定</td><td>使用可观测质量指标并明确其局限</td></tr>
           </tbody></table></div>
-          <p>“两个参数配两个矩”只是计数条件，不是识别证明。真正的问题是：不同参数改变数据分布的方式是否足够不同，且用于识别的变化是否外生或由模型正确解释。</p>
+          <p>参数个数与矩条件个数相等只是计数条件，并不能证明参数已被识别。识别要求不同参数对数据分布的影响方式足够不同，并且用于识别的变化是外生的，或已由模型正确刻画。</p>
         </section>
 
-        <section class="content-section" aria-labelledby="workflow-title"><span class="section-kicker">End-to-end workflow</span><h2 id="workflow-title">从模型到论文：七步闭环</h2>
+        <section class="content-section" aria-labelledby="workflow-title"><span class="section-kicker">2.6</span><h2 id="workflow-title">结构估计的工作流程</h2>
           <ol>
             <li><strong>事实：</strong>用描述统计和设计型估计明确模型必须解释的关键事实。</li>
             <li><strong>模型：</strong>写行动者、选择、状态、收益、约束、随机项与均衡概念。</li>
@@ -87,20 +87,20 @@
             <li><strong>拟合与验证：</strong>先看用于估计的事实，再看未使用矩、留出样本或外部政策冲击。</li>
             <li><strong>反事实：</strong>改变政策、重新求解，并报告参数/模型不确定性与适用边界。</li>
           </ol>
-          <div class="callout"><strong>蒙特卡洛门槛：</strong>在真实数据之前，用已知参数生成假数据，检查代码能否估回真值。估不回时先修代码或识别，不要继续解释真实数据。</div>
+          <div class="callout"><strong>蒙特卡洛检验：</strong>使用真实数据之前，先用已知参数生成模拟数据，检查估计程序能否得到接近真值的估计。若不能，应先检查代码或识别条件，再分析真实数据。</div>
         </section>
 
-        <section class="content-section" aria-labelledby="validation-title"><span class="section-kicker">Fit is not enough</span><h2 id="validation-title">拟合、验证与反事实可信度</h2>
+        <section class="content-section" aria-labelledby="validation-title"><span class="section-kicker">2.7</span><h2 id="validation-title">模型拟合与验证</h2>
           <div class="concept-grid">
-            <article class="concept-card"><span class="concept-tag">样本内拟合</span><h2>能否复现基本事实？</h2><p>检查总采纳率、价格梯度、规模异质性。若这些都复现不了，反事实没有基础。</p></article>
-            <article class="concept-card"><span class="concept-tag">未用矩</span><h2>能否解释没有拿来估计的事实？</h2><p>例如用总体采纳率估计，却检验不同距离组的采纳差异。</p></article>
-            <article class="concept-card"><span class="concept-tag">外部验证</span><h2>能否预测新环境？</h2><p>最好使用留出地区、后续时期或实验政策冲击，避免“用同一份数据既出题又判卷”。</p></article>
-            <article class="concept-card"><span class="concept-tag">敏感性</span><h2>结论依赖哪些假设？</h2><p>更换误差分布、允许价格内生、加入供给反应，看政策排序是否稳健。</p></article>
+            <article class="concept-card"><span class="concept-tag">样本内拟合</span><h2>能否再现基本事实</h2><p>检查总采纳率、采纳率随价格的变化以及不同规模农户间的差异。若这些都不能再现，反事实分析就缺乏依据。</p></article>
+            <article class="concept-card"><span class="concept-tag">未用矩</span><h2>能否解释估计中未使用的事实</h2><p>例如，估计时未专门匹配不同距离组的采纳率，可用它们检验模型。</p></article>
+            <article class="concept-card"><span class="concept-tag">外部验证</span><h2>能否预测新环境</h2><p>可使用留出地区、后续时期或实验中的政策冲击检验模型，避免用同一份数据既估计又检验。</p></article>
+            <article class="concept-card"><span class="concept-tag">敏感性</span><h2>结论依赖哪些假设</h2><p>更换误差分布、允许价格内生、加入供给反应，检查政策排序是否改变。</p></article>
           </div>
         </section>
 
-        <footer class="module-footer"><p>验收标准：能为一个研究问题写出“行动者—选择—收益—数据—识别—反事实”六行模型草图。</p><button class="completion-button" type="button" data-complete-module="model" aria-pressed="false">标记本模块为已完成</button></footer>
-        <div class="module-pager"><a href="../why-structure/">← 模块 1</a><a href="../math-foundations/">模块 3：数学急救包 →</a></div>
+        <footer class="module-footer"><p>学习要求：能够为一个研究问题写出决策者、选择集、收益、数据、识别和反事实六个方面的模型设定。</p><button class="completion-button" type="button" data-complete-module="model" aria-pressed="false">标记本模块为已完成</button></footer>
+        <div class="module-pager"><a href="../why-structure/">← 模块 1</a><a href="../math-foundations/">模块 3：数学预备知识 →</a></div>
       </main>
     </div>
     <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../assets/js/structural-course.js"></script>
