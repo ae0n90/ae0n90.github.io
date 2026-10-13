@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1. 是否需要结构模型 | 结构估计入门</title>
-    <meta name="description" content="用研究问题而不是方法崇拜判断是否需要结构模型，并准确理解结构式与简约式的关系。">
+    <title>1. 何时需要结构模型 | 结构估计入门</title>
+    <meta name="description" content="结构模型与简约式方法的关系，以及根据研究问题判断是否需要结构模型。">
     <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/why-structure/">
     <link rel="stylesheet" href="../../../assets/css/site.css">
     <link rel="stylesheet" href="../../../assets/css/learning.css">
@@ -25,13 +25,13 @@
         <div class="course-progress"><div class="progress-track" aria-hidden="true"><div class="progress-value" data-course-progress-bar></div></div><div class="progress-copy" data-course-progress>已完成 0 / 7 个模块</div></div>
         <ol class="course-nav">
           <li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
-          <li><a aria-current="page" data-course-nav-module="why" href="./"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
-          <li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
-          <li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
-          <li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
-          <li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
-          <li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
-          <li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+          <li><a aria-current="page" data-course-nav-module="why" href="./"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li>
+          <li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li>
+          <li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li>
+          <li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li>
+          <li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li>
+          <li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li>
+          <li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li>
         </ol>
       </aside>
 
@@ -39,40 +39,40 @@
         <details class="course-mobile-nav"><summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary>
           <ol class="course-nav">
             <li><a href="../"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
-            <li><a aria-current="page" data-course-nav-module="why" href="./"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
-            <li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
-            <li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
-            <li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
-            <li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
-            <li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
-            <li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
+            <li><a aria-current="page" data-course-nav-module="why" href="./"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li>
+            <li><a data-course-nav-module="model" href="../model-building/"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li>
+            <li><a data-course-nav-module="math" href="../math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li>
+            <li><a data-course-nav-module="estimators" href="../estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li>
+            <li><a data-course-nav-module="cases" href="../development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li>
+            <li><a data-course-nav-module="hands-on" href="../hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="../step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="../sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li>
+            <li><a data-course-nav-module="next" href="../next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li>
           </ol>
         </details>
 
         <div class="breadcrumbs"><a href="../../">AI Learning</a><span>/</span><a href="../">结构估计</a><span>/</span>模块 1</div>
         <header class="course-hero">
-          <span class="module-kicker">Module 1 · 约 25 分钟</span>
-          <h1>先判断：<br>真的需要结构模型吗？</h1>
-          <p>结构模型不是“更高级的回归”。先判断研究问题是否需要行为外推，再决定是否承担更强模型假设和更高计算成本。</p>
+          <span class="module-kicker">模块 1</span>
+          <h1>何时需要结构模型</h1>
+          <p>结构模型与简约式回归回答的问题不同，二者没有高下之分。是否采用结构模型，取决于研究问题是否要求把估计结果外推到新的政策或环境；采用结构模型意味着接受更强的模型假设和更高的计算成本。</p>
         </header>
 
         <section class="content-section" aria-labelledby="one-sentence-title">
-          <span class="section-kicker">The core idea</span>
-          <h2 id="one-sentence-title">一句话理解结构估计</h2>
+          <span class="section-kicker">1.1</span>
+          <h2 id="one-sentence-title">结构估计的基本步骤</h2>
           <div class="formula-box">经济行为模型 + 数据中的识别信息 → 估计行为/技术参数 → 检验模型 → 在明确边界内做反事实</div>
           <p>
             例如，我们不只问“发放机械化服务代金券后，采纳率提高多少”，还想知道农户如何权衡服务价格、距离和经营规模，
             进而比较“补贴 20%”“小农户定向补贴”“改善服务可达性”等尚未同时实施的方案。
           </p>
           <div class="callout warning">
-            <strong>重要纠偏：</strong>结构模型能做未实施政策的预测，不等于预测自动可信。
+            <strong>注意：</strong>结构模型可以预测尚未实施的政策，但预测本身未必可信。
             可信度来自参数识别、模型拟合、样本外验证、敏感性分析，以及反事实没有超出数据支持范围。
           </div>
         </section>
 
         <section class="content-section" aria-labelledby="compare-title">
-          <span class="section-kicker">Not enemies</span>
-          <h2 id="compare-title">简约式与结构式：分工不同，不是高低之分</h2>
+          <span class="section-kicker">1.2</span>
+          <h2 id="compare-title">简约式方法与结构方法的比较</h2>
           <div class="compare-grid">
             <article>
               <h3>设计型 / 简约式证据</h3>
@@ -98,29 +98,28 @@
             </table>
           </div>
           <p>
-            最有说服力的做法往往是组合：用实验或准实验识别关键参数、检验模型预测，再用结构模型比较没有直接实验过的政策。
-            Todd 与 Wolpin 的 PROGRESA 研究就是后面会学习的经典例子。
+            实际研究中常把两者结合：用实验或准实验识别关键参数、检验模型预测，再用结构模型比较没有直接实验过的政策。模块 5 介绍的 Todd 与 Wolpin 对 PROGRESA 的研究即属此类。
           </p>
         </section>
 
         <section class="content-section" aria-labelledby="middle-title">
-          <span class="section-kicker">Middle grounds</span>
-          <h2 id="middle-title">不必在“一个回归”和“完整大模型”之间二选一</h2>
-          <p>模型做多完整，取决于目标政策问题，而不是研究者能写多少公式。课程课件特别提醒了三类中间路线：</p>
+          <span class="section-kicker">1.3</span>
+          <h2 id="middle-title">介于简约式与完整结构模型之间的方法</h2>
+          <p>模型的完整程度应由所要回答的政策问题决定。除完整结构模型外，常用的还有以下三类方法：</p>
           <div class="concept-grid">
-            <article class="concept-card"><span class="concept-tag">Sufficient statistics</span><h2>只识别政策公式真正需要的对象</h2><p>若福利或最优税公式只需要一个弹性和少数份额，可以直接估这些充分统计量，不必复原整套偏好分布。</p></article>
-            <article class="concept-card"><span class="concept-tag">MTE / PRTE</span><h2>刻画政策改变的参与边际</h2><p>当关键问题是“新政策会推动哪类人参加”，可以用边际处理效应连接工具变量与政策外推，不一定搭完整动态模型。</p></article>
-            <article class="concept-card"><span class="concept-tag">Semi-structural</span><h2>只结构化最关键的机制</h2><p>保留可信的行为约束或会计关系，其他部分用更灵活的经验函数表示；但仍要明确哪些反事实依赖哪些假设。</p></article>
-            <article class="concept-card"><span class="concept-tag">Full structural</span><h2>新制度改变多条行为边际</h2><p>当政策同时改变选择、动态状态、价格或均衡，才更可能需要完整求解并联合估计。</p></article>
+            <article class="concept-card"><span class="concept-tag">sufficient statistics</span><h2>充分统计量方法</h2><p>若福利或最优税公式只需要一个弹性和少数份额，可以直接估这些充分统计量，不必复原整套偏好分布。</p></article>
+            <article class="concept-card"><span class="concept-tag">MTE / PRTE</span><h2>边际处理效应</h2><p>若关键问题是新政策会使哪些人参与，可以用边际处理效应把工具变量估计与政策外推联系起来，而无须设定完整的动态模型。</p></article>
+            <article class="concept-card"><span class="concept-tag">semi-structural</span><h2>半结构模型</h2><p>保留可信的行为约束或会计关系，其他部分用更灵活的经验函数表示；但仍要明确哪些反事实依赖哪些假设。</p></article>
+            <article class="concept-card"><span class="concept-tag">full structural</span><h2>完整结构模型</h2><p>当政策同时改变选择、动态状态、价格或均衡时，通常需要完整求解模型并联合估计全部参数。</p></article>
           </div>
-          <div class="callout blue"><strong>一个实用标准：</strong>从目标反事实倒推最小充分模型。删掉某个结构后若政策答案仍可由数据识别，就先不加；删掉后答案无法定义或无法外推，才保留它。</div>
+          <div class="callout blue"><strong>选择原则：</strong>从目标反事实出发确定最小的充分模型。若去掉某一部分结构后，政策问题的答案仍可由数据识别，则不必加入该部分；若去掉后答案无法定义或无法外推，则应保留。</div>
         </section>
 
         <section class="content-section" aria-labelledby="decision-title">
-          <span class="section-kicker">Interactive decision</span>
-          <h2 id="decision-title">方法选择练习</h2>
+          <span class="section-kicker">1.4</span>
+          <h2 id="decision-title">练习：方法选择</h2>
           <div class="decision-box" id="method-guide">
-            <p><strong>你的研究最需要回答哪些问题？可多选。</strong></p>
+            <p><strong>研究需要回答下列哪些问题？（可多选）</strong></p>
             <div class="decision-options">
               <label><input type="checkbox" value="past-effect">只想可信估计一个已发生政策的平均效果</label>
               <label><input type="checkbox" value="new-policy">要比较现实中尚未实施的多个政策方案</label>
@@ -133,21 +132,21 @@
         </section>
 
         <section class="content-section" aria-labelledby="labels-title">
-          <span class="section-kicker">Three distinctions</span>
-          <h2 id="labels-title">三个容易混淆的标签</h2>
+          <span class="section-kicker">1.5</span>
+          <h2 id="labels-title">几个容易混淆的概念</h2>
           <div class="concept-grid">
-            <article class="concept-card"><span class="concept-tag">Logit ≠ 自动结构</span><h2>估计方法不决定研究是否结构化</h2><p>普通 logit 也是 MLE，但只有当效用、选择集、参数含义和反事实映射被明确写出时，它才承担结构模型的角色。</p></article>
-            <article class="concept-card"><span class="concept-tag">Estimation</span><h2>估计与校准不同</h2><p>估计用数据和抽样理论确定参数并量化不确定性；校准常从外部文献或目标矩指定参数。二者可以结合，但必须标明来源。</p></article>
-            <article class="concept-card"><span class="concept-tag">Deep parameter</span><h2>“深层”不等于天然稳定</h2><p>把偏好或成本称为 deep parameter，只表示模型赋予它底层含义。政策变化后是否稳定，仍需经济论证和敏感性检验。</p></article>
-            <article class="concept-card"><span class="concept-tag">Counterfactual</span><h2>反事实不是水晶球</h2><p>反事实是“如果模型、参数和环境映射成立会怎样”。报告结果时要把条件、支持范围和未建模反馈一并写出。</p></article>
+            <article class="concept-card"><span class="concept-tag">logit 与结构模型</span><h2>估计方法不决定模型是否为结构模型</h2><p>普通 logit 也是 MLE，但只有当效用、选择集、参数含义和反事实映射被明确写出时，它才承担结构模型的角色。</p></article>
+            <article class="concept-card"><span class="concept-tag">estimation / calibration</span><h2>估计与校准</h2><p>估计用数据和抽样理论确定参数并量化不确定性；校准常从外部文献或目标矩指定参数。二者可以结合，但必须标明来源。</p></article>
+            <article class="concept-card"><span class="concept-tag">deep parameter</span><h2>深层参数的稳定性</h2><p>把偏好或成本称为深层参数（deep parameter），只表示模型赋予它基础性的经济含义。政策变化后是否稳定，仍需经济论证和敏感性检验。</p></article>
+            <article class="concept-card"><span class="concept-tag">counterfactual</span><h2>反事实分析的条件</h2><p>反事实分析回答的是：若模型、参数以及模型与环境的对应关系成立，结果会如何。报告结果时要把条件、支持范围和未建模反馈一并写出。</p></article>
           </div>
         </section>
 
         <footer class="module-footer">
-          <p>验收标准：能用两句话说明“为什么这个问题需要（或不需要）结构模型”。</p>
+          <p>学习要求：能够说明某一研究问题为什么需要（或不需要）结构模型。</p>
           <button class="completion-button" type="button" data-complete-module="why" aria-pressed="false">标记本模块为已完成</button>
         </footer>
-        <div class="module-pager"><a href="../">← 课程首页</a><a href="../model-building/">模块 2：搭建模型 →</a></div>
+        <div class="module-pager"><a href="../">← 课程首页</a><a href="../model-building/">模块 2：模型的设定 →</a></div>
       </main>
     </div>
 

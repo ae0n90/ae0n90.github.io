@@ -2,46 +2,46 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>B. 动态离散选择 | 结构估计进阶</title>
-    <meta name="description" content="用农业技术采纳案例直观理解Bellman方程、VFI、PFI、NFXP、CCP与有限期倒推。">
+    <title>B. 动态离散选择模型 | 常见的扩展模型</title>
+    <meta name="description" content="Bellman 方程、VFI、PFI、NFXP、CCP 与有限期逆向求解，以农业技术采用为例。">
     <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/advanced/dynamic-choice/">
     <link rel="stylesheet" href="../../../../assets/css/site.css"><link rel="stylesheet" href="../../../../assets/css/learning.css">
   </head>
   <body class="advanced-course">
     <header class="site-header"><a class="brand" href="../../../../">Xiaoshi Zhou</a><nav class="nav" aria-label="Primary navigation"><a href="../../../../about/">About</a><a href="../../../../research/">Research</a><a href="../../../../publications/">Publications</a><a href="../../../../teaching/">Teaching</a><a href="../../../../resources/">Resources</a><a aria-current="page" href="../../../">AI Learning</a><a href="../../../../cv/">CV</a></nav></header>
     <div class="course-shell">
-      <aside class="course-sidebar" aria-label="进阶课程目录"><span class="course-label">Advanced bridge</span><h2>结构估计进阶</h2><ol class="course-nav">
-        <li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li class="course-nav-divider">四条路线</li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li>
+      <aside class="course-sidebar" aria-label="扩展模型目录"><span class="course-label">Structural estimation</span><h2>常见的扩展模型</h2><ol class="course-nav">
+        <li><a href="../../"><span class="nav-index">←</span><span>课程首页</span></a></li><li class="course-nav-divider">各章</li><li><a href="../"><span class="nav-index">⌂</span><span>概述</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态选择模型</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">B</span><span>动态离散选择模型</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型与边际处理效应</span></a></li>
       </ol></aside>
       <main class="course-main">
-        <details class="course-mobile-nav"><summary>进阶课程目录 · 路线 B</summary><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>返回七模块入门课</span></a></li><li><a href="../"><span class="nav-index">⌂</span><span>进阶地图</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态连续与离散选择</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">B</span><span>动态离散选择</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈与多重均衡</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型、LATE 与 MTE</span></a></li></ol></details>
-        <div class="breadcrumbs"><a href="../../../">AI Learning</a><span>/</span><a href="../../">结构估计</a><span>/</span><a href="../">进阶</a><span>/</span>动态选择</div>
-        <header class="course-hero"><span class="module-kicker">Route B · 约 60 分钟</span><h1>动态离散选择<span>今天的决定改变明天，就不能只比较今天的收益</span></h1><p>是否迁移、上学、采用灌溉、替换水泵或退出农业，往往都改变未来状态。动态模型的核心不是“变量有滞后项”，而是行动者会比较未来价值。</p></header>
-        <noscript><div class="callout warning">正文可以直接阅读；跨期价值互动实验需要启用 JavaScript。</div></noscript>
+        <details class="course-mobile-nav"><summary>扩展模型目录 · 第 B 章</summary><ol class="course-nav"><li><a href="../../"><span class="nav-index">←</span><span>课程首页</span></a></li><li><a href="../"><span class="nav-index">⌂</span><span>概述</span></a></li><li><a href="../static-choice/"><span class="nav-index">A</span><span>静态选择模型</span></a></li><li><a aria-current="page" href="./"><span class="nav-index">B</span><span>动态离散选择模型</span></a></li><li><a href="../games/"><span class="nav-index">C</span><span>进入博弈</span></a></li><li><a href="../selection-mte/"><span class="nav-index">D</span><span>选择模型与边际处理效应</span></a></li></ol></details>
+        <div class="breadcrumbs"><a href="../../../">AI Learning</a><span>/</span><a href="../../">结构估计</a><span>/</span><a href="../">扩展模型</a><span>/</span>动态选择</div>
+        <header class="course-hero"><span class="module-kicker">第 B 章</span><h1>动态离散选择模型</h1><p>迁移、上学、采用灌溉技术、更换水泵或退出农业等决策都会改变未来的状态。当本期选择影响未来的选择集或收益时，决策者需要比较各选项的未来价值，这时应使用动态模型。模型中含有滞后变量并不足以使其成为动态决策模型。</p></header>
+        <noscript><div class="callout warning">跨期价值数值实验需要启用 JavaScript。</div></noscript>
 
-        <section class="content-section" aria-labelledby="dynamic-question-title"><span class="section-kicker">When is it dynamic?</span><h2 id="dynamic-question-title">先问一句：今天的选择会改变明天的选择集合或收益吗？</h2>
+        <section class="content-section" aria-labelledby="dynamic-question-title"><span class="section-kicker">B.1</span><h2 id="dynamic-question-title">何时需要动态模型</h2>
           <div class="concept-grid">
-            <article class="concept-card"><span class="concept-tag">动态</span><h2>采用灌溉技术</h2><p>今天支付固定成本，未来多年受益；经验、债务和设备状态也随选择改变。</p></article>
-            <article class="concept-card"><span class="concept-tag">动态</span><h2>孩子上学或工作</h2><p>上学积累人力资本，工作积累经验和收入；今天的选择改变未来工资机会。</p></article>
-            <article class="concept-card"><span class="concept-tag">未必动态</span><h2>一次性消费选择</h2><p>若今天选哪家服务商不改变未来价格、经验或可选项，静态模型可能足够。</p></article>
-            <article class="concept-card"><span class="concept-tag">常见误判</span><h2>有面板不等于动态</h2><p>面板数据和滞后因变量可以描述持续性；只有显式未来价值和状态转移才构成动态决策模型。</p></article>
+            <article class="concept-card"><span class="concept-tag">动态</span><h2>采用灌溉技术</h2><p>本期支付固定成本，未来多年受益；经验、债务和设备状态也随选择变化。</p></article>
+            <article class="concept-card"><span class="concept-tag">动态</span><h2>子女上学或工作</h2><p>上学积累人力资本，工作积累经验和收入；本期选择改变未来的工资。</p></article>
+            <article class="concept-card"><span class="concept-tag">未必动态</span><h2>一次性消费选择</h2><p>若本期选择哪家服务商不影响未来的价格、经验或选择集，静态模型即可。</p></article>
+            <article class="concept-card"><span class="concept-tag">常见误解</span><h2>面板数据与动态模型</h2><p>面板数据和滞后因变量可以描述持续性；动态决策模型则需要明确设定未来价值和状态转移。</p></article>
           </div>
         </section>
 
-        <section class="content-section" aria-labelledby="bellman-title"><span class="section-kicker">Bellman in plain language</span><h2 id="bellman-title">Bellman 方程只是在说：现在拿到的 + 明天还能拿到的</h2>
+        <section class="content-section" aria-labelledby="bellman-title"><span class="section-kicker">B.2</span><h2 id="bellman-title">Bellman 方程</h2>
           <div class="formula-box">V(s, ε) = maxₐ { 当期收益 u(a,s,ε;θ) + β × E[V(s′,ε′) | s,a] }</div>
-          <div class="table-wrap"><table class="learning-table"><thead><tr><th>符号</th><th>人话</th><th>农业技术采用例子</th></tr></thead><tbody>
-            <tr><td>s</td><td>今天已经知道、会影响未来的状态</td><td>是否已采用、资产、经验、信贷状态</td></tr>
-            <tr><td>a</td><td>今天能做的动作</td><td>采用 / 等待 / 退出</td></tr>
-            <tr><td>u</td><td>今天立刻得到的净收益</td><td>产出收益减安装费和借款成本</td></tr>
-            <tr><td>s′</td><td>行动后明天进入的状态</td><td>设备老化、经验增加、债务变化</td></tr>
-            <tr><td>β</td><td>未来一单位收益今天值多少</td><td>β 越高，越重视长期收益</td></tr>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>符号</th><th>含义</th><th>农业技术采用中的例子</th></tr></thead><tbody>
+            <tr><td>s</td><td>决策时已知、影响未来的状态变量</td><td>是否已采用、资产、经验、信贷状态</td></tr>
+            <tr><td>a</td><td>本期可选的行动</td><td>采用 / 等待 / 退出</td></tr>
+            <tr><td>u</td><td>本期净收益</td><td>产出收益减安装费和借款成本</td></tr>
+            <tr><td>s′</td><td>下一期的状态</td><td>设备老化、经验增加、债务变化</td></tr>
+            <tr><td>β</td><td>折现因子：下一期一单位收益在本期的价值</td><td>β 越高，越重视长期收益</td></tr>
           </tbody></table></div>
-          <div class="callout warning"><strong>状态必须够用：</strong>给定今天的状态和行动后，历史不应再额外预测明天。漏掉会影响未来的债务或经验，Bellman 递归就不是对真实问题的正确压缩。</div>
+          <div class="callout warning"><strong>状态变量的充分性：</strong>给定本期状态和行动，过去的历史不应对下一期状态有额外的预测力。若遗漏了影响未来的债务或经验等变量，Bellman 方程就不能正确刻画决策问题。</div>
         </section>
 
-        <section class="content-section" aria-labelledby="dynamic-lab-title"><span class="section-kicker">Interactive lab</span><h2 id="dynamic-lab-title">同一个固定成本，短视农户和前瞻农户会作出不同选择</h2>
-          <div class="lab"><p class="lab-label">最小动态采用实验</p><h3>比较本期净收益与终身净价值</h3><p>假设一次采用后，每期都获得同样收益，设备永不坏、也不能退出。这个极简设定只用于摸到“未来价值”，不是可直接估计的实证模型。</p>
+        <section class="content-section" aria-labelledby="dynamic-lab-title"><span class="section-kicker">B.3</span><h2 id="dynamic-lab-title">实验：短视与前瞻的采用决策</h2>
+          <div class="lab"><p class="lab-label">实验</p><h3>本期净收益与终身净价值</h3><p>假设采用后每期获得相同收益，设备不折旧，也不能退出。这一简化设定只用于说明未来价值的作用，不是可直接估计的实证模型。</p>
             <div class="control-row"><label for="dynamic-beta">折现因子 β</label><input id="dynamic-beta" type="range" min="0.05" max="0.97" step="0.01" value="0.80"><span class="control-value" id="dynamic-beta-value">0.80</span></div>
             <div class="control-row"><label for="dynamic-benefit">采用后的每期收益</label><input id="dynamic-benefit" type="range" min="0.5" max="6" step="0.1" value="2"><span class="control-value" id="dynamic-benefit-value">2.0</span></div>
             <div class="control-row"><label for="dynamic-cost">一次性采用成本</label><input id="dynamic-cost" type="range" min="1" max="15" step="0.1" value="6"><span class="control-value" id="dynamic-cost-value">6.0</span></div>
@@ -50,35 +50,35 @@
           </div>
         </section>
 
-        <section class="content-section" aria-labelledby="solve-title"><span class="section-kicker">Solve before estimate</span><h2 id="solve-title">估参数之前，先要知道给定参数时农户会怎么选</h2>
+        <section class="content-section" aria-labelledby="solve-title"><span class="section-kicker">B.4</span><h2 id="solve-title">模型的求解</h2>
           <div class="compare-grid">
-            <article><h3>有限期：从最后一期倒推</h3><p>最后一期没有明天，先解最后一期；再把这个结果带回倒数第二期。教育、生育和生命周期模型常用这种 backward recursion。</p></article>
-            <article><h3>无限期：找到不再变化的价值</h3><p>今天和未来的环境反复出现，价值函数满足固定点。设备替换、企业运营等常用 value/policy function iteration。</p></article>
+            <article><h3>有限期：逆向归纳</h3><p>估计参数需要先求出给定参数下的最优选择。有限期模型从最后一期开始求解，再把结果代入倒数第二期，依次向前递推（backward recursion）。教育、生育和生命周期模型常用此法。</p></article>
+            <article><h3>无限期：不动点</h3><p>环境在各期重复出现时，价值函数是 Bellman 算子的不动点。设备更换、企业经营等问题常用价值函数迭代或策略函数迭代求解。</p></article>
           </div>
-          <div class="table-wrap"><table class="learning-table"><caption>两种基础求解器</caption><thead><tr><th>方法</th><th>每轮做什么</th><th>直觉</th></tr></thead><tbody>
-            <tr><td>VFI：价值函数迭代</td><td>用旧的明日价值更新今天价值，直到前后几乎不变</td><td>反复改“每个状态值多少钱”</td></tr>
-            <tr><td>PFI：政策函数迭代</td><td>先评价一条给定政策，再改进最优动作</td><td>反复改“每个状态做什么”</td></tr>
+          <div class="table-wrap"><table class="learning-table"><caption>两种基本求解方法</caption><thead><tr><th>方法</th><th>每次迭代的计算</th><th>更新的对象</th></tr></thead><tbody>
+            <tr><td>VFI：价值函数迭代</td><td>由上一次迭代的价值函数计算新的价值函数，直至前后两次之差小于容差</td><td>各状态的价值</td></tr>
+            <tr><td>PFI：政策函数迭代</td><td>先计算给定策略的价值，再据此改进各状态下的最优行动</td><td>各状态下的行动</td></tr>
           </tbody></table></div>
-          <p>折现因子小于 1 且满足常见条件时，Bellman 算子具有压缩性质，VFI 会收敛到唯一固定点。但“程序停了”不等于经济模型正确，也不等于参数已识别。</p>
+          <p>折现因子小于 1 且满足常见条件时，Bellman 算子具有压缩性质，VFI 会收敛到唯一固定点。算法收敛并不说明经济模型正确，也不说明参数已被识别。</p>
         </section>
 
-        <section class="content-section" aria-labelledby="estimators-title"><span class="section-kicker">Rust and beyond</span><h2 id="estimators-title">NFXP、CCP、NPL：它们主要在省哪一步计算？</h2>
-          <p>经典设备替换模型常假定：当期不可观测冲击可加、冲击服从极值分布，并且给定状态与行动后，下一期状态不再依赖当期冲击。于是动态选择概率看起来像一个 logit，但 logit 的“效用”包含继续价值。</p>
-          <div class="table-wrap"><table class="learning-table"><thead><tr><th>方法</th><th>核心做法</th><th>主要代价</th></tr></thead><tbody>
-            <tr><td>NFXP</td><td>每试一组 θ，内层完整解 Bellman 固定点；外层最大化似然</td><td>稳妥直观，但内外嵌套可能很慢</td></tr>
-            <tr><td>Hotz–Miller / CCP</td><td>先从数据估计条件选择概率，再反演价值差</td><td>避免反复完整求解，但第一步概率误差会传下去</td></tr>
-            <tr><td>NPL</td><td>在伪似然估计与选择概率更新之间迭代</td><td>折中计算量；仍需检查收敛和有限样本表现</td></tr>
-            <tr><td>有限期模拟/倒推</td><td>从终点递归，可允许更丰富的类型和冲击</td><td>状态一多就遭遇“维度灾难”</td></tr>
+        <section class="content-section" aria-labelledby="estimators-title"><span class="section-kicker">B.5</span><h2 id="estimators-title">估计方法：NFXP、CCP 与 NPL</h2>
+          <p>经典设备替换模型常假定：当期不可观测冲击可加、冲击服从极值分布，并且给定状态与行动后，下一期状态不再依赖当期冲击。在这些假设下，动态选择概率具有 logit 形式，其中的效用项包含继续价值。</p>
+          <div class="table-wrap"><table class="learning-table"><thead><tr><th>方法</th><th>做法</th><th>主要缺点</th></tr></thead><tbody>
+            <tr><td>NFXP</td><td>对每组 θ，内层求解 Bellman 不动点；外层最大化似然函数</td><td>两层嵌套，计算量大</td></tr>
+            <tr><td>Hotz–Miller / CCP</td><td>先从数据估计条件选择概率，再反演价值差</td><td>不必反复求解模型，但第一步的估计误差会影响第二步</td></tr>
+            <tr><td>NPL</td><td>在伪似然估计与选择概率更新之间迭代</td><td>计算量介于两者之间；需检查收敛性和有限样本性质</td></tr>
+            <tr><td>有限期逆向求解与模拟</td><td>从最后一期递推，可容纳较复杂的类型和冲击</td><td>状态变量增多时计算量急剧上升（维数灾难）</td></tr>
           </tbody></table></div>
-          <div class="callout blue"><strong>条件选择概率（CCP）是什么？</strong>它只是“处于状态 s 时选择动作 a 的概率”。静态 logit 直接由当期效用给出；动态模型的 CCP 还压缩了未来价值。</div>
+          <div class="callout blue"><strong>条件选择概率（CCP）：</strong>处于状态 s 时选择行动 a 的概率。在静态 logit 中，它只由当期效用决定；在动态模型中，它还取决于未来价值。</div>
         </section>
 
-        <section class="content-section" aria-labelledby="diagnostics-title"><span class="section-kicker">Research checklist</span><h2 id="diagnostics-title">一个动态项目至少要过六道检查</h2>
-          <ol><li><strong>时间单位：</strong>月、季、年会改变折现、状态转移和冲击含义。</li><li><strong>状态空间：</strong>哪些变量真正预测未来？连续状态怎样离散或插值？</li><li><strong>状态转移：</strong>哪些转移由选择造成，哪些是外生过程？</li><li><strong>初始条件与永久类型：</strong>第一期状态是否与未观测偏好相关？</li><li><strong>识别：</strong>哪些跨期选择变化分别识别固定成本、流收益和 β？β 常需外部校准或强变化。</li><li><strong>计算验证：</strong>多初值、容差、网格和模拟数是否改变参数与反事实？蒙特卡洛能否回收真值？</li></ol>
-          <div class="callout warning"><strong>最常见的过度解释：</strong>观察到采用持续性，不足以证明“习惯”或“学习”。永久异质性、转换成本、状态依赖和测量误差都能生成相似路径，必须靠额外变化区分。</div>
+        <section class="content-section" aria-labelledby="diagnostics-title"><span class="section-kicker">B.6</span><h2 id="diagnostics-title">动态模型需要检查的六个方面</h2>
+          <ol><li><strong>时间单位：</strong>月、季、年会改变折现、状态转移和冲击含义。</li><li><strong>状态空间：</strong>哪些变量影响未来？连续状态变量如何离散化或插值？</li><li><strong>状态转移：</strong>哪些转移由选择造成，哪些是外生过程？</li><li><strong>初始条件与永久类型：</strong>第一期状态是否与未观测偏好相关？</li><li><strong>识别：</strong>固定成本、每期收益和 β 分别由哪些跨期选择变化识别？β 通常需要外部校准或有较强的外生变化。</li><li><strong>计算检验：</strong>初值、容差、网格和模拟次数是否影响参数估计与反事实结果？蒙特卡洛检验能否得到接近真值的估计？</li></ol>
+          <div class="callout warning"><strong>常见的过度解释：</strong>采用行为的持续性不足以证明存在习惯或学习。永久异质性、转换成本、状态依赖和测量误差都可能产生相似的选择路径，需要额外的外生变化才能区分。</div>
         </section>
 
-        <div class="module-pager"><a href="../static-choice/">← 路线 A</a><a href="../games/">路线 C：进入博弈 →</a></div>
+        <div class="module-pager"><a href="../static-choice/">← 第 A 章</a><a href="../games/">第 C 章：进入博弈 →</a></div>
       </main>
     </div>
     <footer class="site-footer"><span>© 2026 Xiaoshi Zhou</span><span><a href="mailto:Xiaoshi.Zhou@cau.edu.cn">Xiaoshi.Zhou@cau.edu.cn</a></span></footer><script src="../../../../assets/js/structural-advanced.js"></script>

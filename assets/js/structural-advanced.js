@@ -79,8 +79,8 @@
       const current = duplicate ? two : one;
       byId("iia-utility-value").textContent = utility.toFixed(2);
       output.textContent = duplicate
-        ? `复制出一个可见属性完全相同的服务 B 后，简单 logit 预测总购买率从 ${(100 * one.a).toFixed(1)}% 升到 ${(100 * (two.a + two.b)).toFixed(1)}%。\nA 与 B 平分原本的吸引力，但它们还从“自营”抢走了额外份额。这就是 IIA 的机械替代限制。`
-        : `只有一个服务商时，预测购买率为 ${(100 * one.a).toFixed(1)}%，自营率为 ${(100 * one.self).toFixed(1)}%。勾选复制选项，观察简单 logit 如何处理一个近乎相同的选择。`;
+        ? `复制出一个可见属性完全相同的服务 B 后，简单 logit 预测总购买率从 ${(100 * one.a).toFixed(1)}% 升到 ${(100 * (two.a + two.b)).toFixed(1)}%。\nA 与 B 平分了原来 A 的份额，同时还从“自营”中吸引了额外的份额。这是 IIA 性质所隐含的替代模式。`
+        : `只有一个服务商时，预测购买率为 ${(100 * one.a).toFixed(1)}%，自营率为 ${(100 * one.self).toFixed(1)}%。勾选上方选项，可查看简单 logit 模型在加入一个相同选项后的预测。`;
       draw(current, duplicate);
     }
 
@@ -152,7 +152,7 @@
       byId("dynamic-beta-value").textContent = beta.toFixed(2);
       byId("dynamic-benefit-value").textContent = benefit.toFixed(1);
       byId("dynamic-cost-value").textContent = cost.toFixed(1);
-      output.textContent = `只看本期：收益−成本 = ${myopic.toFixed(2)}，${myopic >= 0 ? "会采用" : "不会采用"}。\n看见未来：收益现值−一次性成本 = ${dynamic.toFixed(2)}，${dynamic >= 0 ? "会采用" : "不会采用"}。\n这里假定技术一旦采用就永久获得同样收益；真实模型还要写明状态转移、冲击和退出。`;
+      output.textContent = `只看本期：收益−成本 = ${myopic.toFixed(2)}，${myopic >= 0 ? "会采用" : "不会采用"}。\n考虑未来：收益现值−一次性成本 = ${dynamic.toFixed(2)}，${dynamic >= 0 ? "会采用" : "不会采用"}。\n这里假定技术一经采用便永久获得相同收益；实际的模型还需设定状态转移、冲击和退出。`;
       draw(beta, benefit, cost);
     }
 
@@ -201,7 +201,7 @@
         cells.oe.classList.add("is-equilibrium");
         equilibria.push("只有 A 进入", "只有 B 进入");
       }
-      output.textContent = `独家进入利润 = ${monopoly.toFixed(1)}；两家都进入时每家利润 = ${duopoly.toFixed(1)}。\n纳什均衡：${equilibria.join("；")}。${equilibria.length > 1 ? " 数据只看到一种结果时，模型还需要均衡选择规则，或改用允许集合识别的方法。" : " 当前参数下，最佳反应给出唯一纯策略结果。"}`;
+      output.textContent = `独家进入利润 = ${monopoly.toFixed(1)}；两家都进入时每家利润 = ${duopoly.toFixed(1)}。\n纳什均衡：${equilibria.join("；")}。${equilibria.length > 1 ? " 数据中只观测到一种结果，因此模型需要设定均衡选择规则，或采用集合识别方法。" : " 在当前参数下，纯策略纳什均衡唯一。"}`;
     }
 
     [demandInput, costInput, competitionInput].forEach((input) => input.addEventListener("input", update));
@@ -267,8 +267,8 @@
       const baselineAverage = 4 - 3 * baseline;
       byId("mte-baseline-value").textContent = baseline.toFixed(2);
       byId("mte-policy-value").textContent = policy.toFixed(2);
-      const group = policy >= baseline ? "被新政策推入项目的人" : "因政策收缩而退出的人";
-      output.textContent = `基准参与阈值 p₀=${baseline.toFixed(2)}；新政策阈值 p₁=${policy.toFixed(2)}。\n${group}位于 U∈[${lower.toFixed(2)}, ${upper.toFixed(2)}]，这一区间的平均边际处理效应为 ${policyAverage.toFixed(2)}。\n原参与者的平均效应为 ${baselineAverage.toFixed(2)}，全体 ATE 为 1.00。三者不同，说明“一个处理效应”不能代表所有政策。`;
+      const group = policy >= baseline ? "因新政策而参与项目的人" : "因政策收缩而退出项目的人";
+      output.textContent = `基准参与阈值 p₀=${baseline.toFixed(2)}；新政策阈值 p₁=${policy.toFixed(2)}。\n${group}位于 U∈[${lower.toFixed(2)}, ${upper.toFixed(2)}]，这一区间的平均边际处理效应为 ${policyAverage.toFixed(2)}。\n原参与者的平均效应为 ${baselineAverage.toFixed(2)}，全体 ATE 为 1.00。三者不同，说明单一的处理效应参数不能回答所有政策问题。`;
       draw(baseline, policy);
     }
 

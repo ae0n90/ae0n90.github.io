@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>结构估计入门 | AI Learning</title>
-    <meta name="description" content="面向应用经济学研究生的结构估计分页课程：七个入门模块、四条进阶路线、发展经济学案例、交互实验与可复现代码。">
+    <meta name="description" content="结构估计入门课程：模型设定、识别、最大似然估计、矩估计、发展经济学应用、常见的扩展模型与可重复的程序。">
     <link rel="canonical" href="https://900112.xyz/learning/structural-estimation/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="结构估计 | Structural Estimation">
-    <meta property="og:description" content="七个入门模块与四条进阶路线，含发展经济学案例、交互实验及 Stata/Python 实操。">
+    <meta property="og:title" content="结构估计入门 | AI Learning">
+    <meta property="og:description" content="结构估计入门课程：模型设定、识别、最大似然估计、矩估计、发展经济学应用、常见的扩展模型与可重复的程序。">
     <meta property="og:url" content="https://900112.xyz/learning/structural-estimation/">
     <meta property="og:image" content="https://900112.xyz/assets/images/structural-estimation-og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -39,15 +39,15 @@
         </div>
         <ol class="course-nav">
           <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
-          <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
-          <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
-          <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
-          <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
-          <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
-          <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
-          <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
-          <li class="course-nav-divider">继续学习</li>
-          <li><a href="advanced/"><span class="nav-index">↗</span><span>进阶模型地图</span></a></li>
+          <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li>
+          <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li>
+          <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li>
+          <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li>
+          <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li>
+          <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li>
+          <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li>
+          <li class="course-nav-divider">扩展模型</li>
+          <li><a href="advanced/"><span class="nav-index">↗</span><span>常见的扩展模型</span></a></li>
         </ol>
       </aside>
 
@@ -56,117 +56,114 @@
           <summary>课程目录 · <span data-course-progress>已完成 0 / 7 个模块</span></summary>
           <ol class="course-nav">
             <li><a aria-current="page" href="./"><span class="nav-index">⌂</span><span>课程首页</span></a></li>
-            <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>先判断是否需要结构模型</span></a></li>
-            <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>从研究问题到可估计模型</span></a></li>
-            <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学急救包</span></a></li>
-            <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>MLE、GMM、SMM</span></a></li>
-            <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学经典案例</span></a></li>
-            <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>机械化服务完整实操</span></a></li>
-            <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>学习路线与自测</span></a></li>
-            <li><a href="advanced/"><span class="nav-index">↗</span><span>进阶模型地图</span></a></li>
+            <li><a data-course-nav-module="why" href="why-structure/"><span class="nav-index"><span>1</span></span><span>何时需要结构模型</span></a></li>
+            <li><a data-course-nav-module="model" href="model-building/"><span class="nav-index"><span>2</span></span><span>模型的设定</span></a></li>
+            <li><a data-course-nav-module="math" href="math-foundations/"><span class="nav-index"><span>3</span></span><span>数学预备知识</span></a></li>
+            <li><a data-course-nav-module="estimators" href="estimators/"><span class="nav-index"><span>4</span></span><span>估计方法</span></a></li>
+            <li><a data-course-nav-module="cases" href="development-cases/"><span class="nav-index"><span>5</span></span><span>发展经济学中的应用</span></a></li>
+            <li><a data-course-nav-module="hands-on" href="hands-on/"><span class="nav-index"><span>6</span></span><span>实例：农机服务采纳模型</span></a></li><li><a href="step-by-step/"><span class="nav-index"><span>6A</span></span><span>logit 结构模型的推导与估计</span></a></li><li><a href="sem-bridge/"><span class="nav-index"><span>6B</span></span><span>结构方程模型</span></a></li>
+            <li><a data-course-nav-module="next" href="next-steps/"><span class="nav-index"><span>7</span></span><span>自测与阅读建议</span></a></li>
+            <li><a href="advanced/"><span class="nav-index">↗</span><span>常见的扩展模型</span></a></li>
           </ol>
         </details>
 
         <div class="breadcrumbs"><a href="../">AI Learning</a><span>/</span>结构估计入门</div>
 
         <header class="course-hero">
-          <span class="module-kicker">Guided course · 7 modules + 4 advanced routes</span>
-          <h1>结构估计<span>从“会回归”到“会建模、会估计、会做政策反事实”</span></h1>
-          <p>
-            这不是结构估计百科全书，也不承诺八周变成结构计量专家。目标更具体：
-            用最少但准确的数学，帮助已经熟悉 DID、TWFE 等方法的经济学研究生建立一套可操作的入门框架。
-          </p>
+          <span class="module-kicker">课程概述</span>
+          <h1>结构估计入门</h1>
+          <p>本课程面向已经掌握 DID、TWFE 等简约式方法的经济学研究生，介绍结构估计的基本概念与方法：模型设定、识别、最大似然估计、矩估计、模型验证和政策反事实分析。数学推导限于理解方法所必需的部分。</p>
           <div class="learning-outcomes" aria-label="学习结果">
-            <div><strong>会判断</strong><span>知道什么问题值得上结构模型，什么问题不需要。</span></div>
-            <div><strong>会拆解</strong><span>能把论文拆成行为、数据、识别、估计、验证与反事实。</span></div>
-            <div><strong>会动手</strong><span>能运行一个 Stata + Python 的农业服务采纳教学项目。</span></div>
+            <div><strong>方法选择</strong><span>判断一个研究问题是否需要结构模型。</span></div>
+            <div><strong>文献阅读</strong><span>从行为假设、数据、识别、估计、验证与反事实几个方面分析论文。</span></div>
+            <div><strong>计算</strong><span>用 Stata、R 或 Python 完成农机服务采纳模型的估计。</span></div>
           </div>
         </header>
 
         <noscript><div class="callout warning">本课程的正文可以直接阅读，但进度、自测和交互实验需要启用 JavaScript。</div></noscript>
 
         <section class="content-section" aria-labelledby="route-title">
-          <span class="section-kicker">Learning route</span>
-          <h2 id="route-title">七个短模块，一次只解决一个问题</h2>
+          
+          <h2 id="route-title">课程内容</h2>
           <div class="module-grid">
             <article class="module-card" data-module-card="why">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">1</span>
-              <h2>先判断是否需要结构模型</h2>
-              <p>修正“结构一定比简约式高级”的误解，建立方法选择的决策标准。</p>
+              <h2>何时需要结构模型</h2>
+              <p>比较结构方法与简约式方法的适用范围，给出选择方法的标准。</p>
               <a class="card-link" href="why-structure/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="model">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">2</span>
-              <h2>从研究问题到可估计模型</h2>
-              <p>用机械化服务采纳案例串起行动者、状态、选择、效用、误差、识别和反事实。</p>
+              <h2>模型的设定</h2>
+              <p>以农机服务采纳为例，说明决策者、状态、选择、效用、随机项、识别与反事实的设定。</p>
               <a class="card-link" href="model-building/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="math">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">3</span>
-              <h2>数学急救包</h2>
-              <p>概率、期望、方差、AR(1) 和优化；三个互动实验帮助建立直觉。</p>
+              <h2>数学预备知识</h2>
+              <p>概率、期望、方差、AR(1) 过程和数值优化，附三个数值实验。</p>
               <a class="card-link" href="math-foundations/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="estimators">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">4</span>
-              <h2>MLE、GMM、SMM 与间接推断</h2>
-              <p>不靠口诀，统一理解为“模型与数据怎样对账”，并厘清方法之间的关系。</p>
+              <h2>估计方法：MLE、GMM、SMM 与间接推断</h2>
+              <p>四种方法的目标函数、适用条件及相互关系。</p>
               <a class="card-link" href="estimators/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="cases">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">5</span>
-              <h2>发展经济学经典案例</h2>
-              <p>技术采纳、教育补贴、微型金融、迁移与风险分担：按同一模板拆四篇论文。</p>
+              <h2>发展经济学中的应用</h2>
+              <p>技术采纳、教育补贴、微型金融、迁移与风险分担四篇论文。</p>
               <a class="card-link" href="development-cases/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="hands-on">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">6</span>
-              <h2>农业机械化服务完整实操</h2>
-              <p>从模拟数据、MLE、拟合到补贴反事实，配套可下载的 Stata 和 Python 代码。</p>
+              <h2>实例：农机服务采纳模型</h2>
+              <p>模拟数据、最大似然估计、拟合检验与补贴反事实，附 Stata 和 Python 程序。</p>
               <a class="card-link" href="hands-on/">进入模块 →</a>
             </article>
             <article class="module-card" data-module-card="next">
               <span class="module-status" data-module-status>未完成</span><span class="module-number">7</span>
-              <h2>八周路线、权威资料与自测</h2>
-              <p>用十题自测定位薄弱点，并把下一步落实到阅读、复现和自己的小项目。</p>
+              <h2>自测与阅读建议</h2>
+              <p>十道自测题、八周学习安排和参考资料。</p>
               <a class="card-link" href="next-steps/">进入模块 →</a>
             </article>
           </div>
         </section>
 
-        <section class="content-section" aria-labelledby="advanced-title">
-          <span class="section-kicker">Advanced bridge</span>
-          <h2 id="advanced-title">学完静态二元 logit，下一步不是把模型一次做大</h2>
-          <p>
-            新增进阶部分沿课程课件的主干拆成四页。每一页都从一个发展经济学问题出发，
-            只增加一类必要复杂性，并配一个可操作的直觉实验。
-          </p>
-          <div class="advanced-route-grid">
-            <article class="advanced-route"><span class="route-index">A</span><h3>静态连续与离散选择</h3><p>需求系统、随机效用、IIA、随机系数、价格内生与 BLP。</p><a class="card-link" href="advanced/static-choice/">进入路线 A →</a></article>
-            <article class="advanced-route"><span class="route-index">B</span><h3>动态离散选择</h3><p>Bellman 方程、有限期倒推、VFI/PFI、NFXP 与 CCP。</p><a class="card-link" href="advanced/dynamic-choice/">进入路线 B →</a></article>
-            <article class="advanced-route"><span class="route-index">C</span><h3>进入博弈与多重均衡</h3><p>服务商最佳反应、均衡选择、矩不等式与集合识别。</p><a class="card-link" href="advanced/games/">进入路线 C →</a></article>
-            <article class="advanced-route"><span class="route-index">D</span><h3>选择模型、LATE 与 MTE</h3><p>样本选择、控制函数、边际参与者与政策相关处理效应。</p><a class="card-link" href="advanced/selection-mte/">进入路线 D →</a></article>
+
+        <section class="content-section" aria-labelledby="deep-title">
+          
+          <h2 id="deep-title">补充内容</h2>
+          <div class="module-grid">
+            <article class="module-card"><span class="module-number">6A</span><h2>logit 结构模型的推导与估计</h2><p>以模块 6 的模型为例：选择概率的推导、似然函数的数值算例、Newton 迭代、价格系数的识别、估计结果的解释、拟合检验、反事实的置信区间与蒙特卡洛检验。附 Python、R、Stata 程序。</p><a class="card-link" href="step-by-step/">进入模块 →</a></article>
+            <article class="module-card"><span class="module-number">6B</span><h2>结构方程模型</h2><p>结构方程模型与结构估计的区别；潜变量、协方差结构、自由度与拟合指数。以 Holzinger–Swineford（1939）公开数据和农户计划行为理论的模拟数据为例，附 lavaan 与 semopy 程序。</p><a class="card-link" href="sem-bridge/">进入模块 →</a></article>
           </div>
-          <p><a class="learning-button" href="advanced/">先看完整进阶地图</a></p>
+        </section>
+        <section class="content-section" aria-labelledby="advanced-title">
+          
+          <h2 id="advanced-title">常见的扩展模型</h2>
+          <p>静态二元 logit 模型可以从四个方向扩展：多选项与价格内生、动态选择、多个决策者之间的博弈，以及自选择与边际处理效应。每一章以一个发展经济学问题为例，并附一个数值实验。</p>
+          <div class="advanced-route-grid">
+            <article class="advanced-route"><span class="route-index">A</span><h3>静态选择模型</h3><p>需求系统、随机效用、IIA、随机系数、价格内生与 BLP。</p><a class="card-link" href="advanced/static-choice/">第 A 章 →</a></article>
+            <article class="advanced-route"><span class="route-index">B</span><h3>动态离散选择模型</h3><p>Bellman 方程、有限期倒推、VFI/PFI、NFXP 与 CCP。</p><a class="card-link" href="advanced/dynamic-choice/">第 B 章 →</a></article>
+            <article class="advanced-route"><span class="route-index">C</span><h3>进入博弈</h3><p>服务商最佳反应、均衡选择、矩不等式与集合识别。</p><a class="card-link" href="advanced/games/">第 C 章 →</a></article>
+            <article class="advanced-route"><span class="route-index">D</span><h3>选择模型与边际处理效应</h3><p>样本选择、控制函数、边际参与者与政策相关处理效应。</p><a class="card-link" href="advanced/selection-mte/">第 D 章 →</a></article>
+          </div>
+          <p><a class="learning-button" href="advanced/">扩展模型概述</a></p>
         </section>
 
         <section class="content-section" aria-labelledby="case-title">
-          <span class="section-kicker">One running example</span>
-          <h2 id="case-title">贯穿全课的案例：农户是否购买农业机械化服务？</h2>
+          
+          <h2 id="case-title">课程使用的例子</h2>
           <div class="callout blue">
-            一个农户会权衡服务价格、经营规模、距离和服务质量。我们先把选择写成一个静态 logit 模型，
-            再用随机代金券提供的价格变化识别价格敏感度，最后模拟不同补贴率下的采纳率。
+            课程以农户是否购买农机作业服务为例。农户根据服务价格、经营规模、距离和服务质量作出选择。模块 2 把这一选择设定为静态 logit 模型，模块 6 利用随机代金券带来的价格变化识别价格敏感度，并预测不同补贴率下的采纳率。
           </div>
-          <p>
-            这个教学案例刻意保持小：它不包含服务商进入、容量约束、价格内生性和一般均衡。
-            这些不是被忽略，而是会在课程中明确列为反事实适用边界，并给出升级路线。
-          </p>
+          <p>该模型不包含服务商进入、供给能力约束、价格内生性和一般均衡效应。这些因素限制了反事实结论的适用范围，相应的扩展模型见“常见的扩展模型”。</p>
         </section>
 
         <aside class="source-note">
-          <strong>本次增补说明：</strong>进阶路线依据用户本地保存的北京大学易君健老师 2024–2025 学年
-          <em>Structural Econometrics</em> 课程大纲、Lecture 1–7 及配套案例课件的知识脉络二次整理。
-          讲解、发展经济学案例与交互实验均为独立改写；原课件不在本站公开。部分导论与案例课件有各自原作者，本站不将其统一署为易老师原创。
+          <strong>致谢：</strong>“常见的扩展模型”各章的编排参考了北京大学易君健老师 2024–2025 学年 <em>Structural Econometrics</em> 课程大纲及讲义。
         </aside>
 
         <div class="module-pager"><span></span><a href="why-structure/">开始模块 1 →</a></div>
