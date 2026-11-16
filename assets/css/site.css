@@ -830,6 +830,197 @@ h1 {
   align-items: center;
 }
 
+/* Section rows: label on the left, content on the right */
+
+.pub-section,
+.funding-list,
+.project-list {
+  max-width: none;
+}
+
+.pub-section,
+.funding-list {
+  margin-bottom: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-strong);
+  scroll-margin-top: 24px;
+}
+
+.pub-section > h2 {
+  margin: 0 0 16px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.pub-section > :not(h2),
+.funding-list > :not(.section-head),
+.project > :not(.tag) {
+  max-width: 760px;
+}
+
+.section-head {
+  margin-bottom: 18px;
+}
+
+.section-head .funding-intro {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.page-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 24px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.plain-list li + li {
+  margin-top: 6px;
+}
+
+.plain-list li::marker {
+  color: var(--accent);
+}
+
+.timeline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-list li {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.timeline-list li:first-child {
+  padding-top: 0;
+}
+
+.timeline-list time {
+  color: var(--accent-dark);
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.9;
+}
+
+.info-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 40px;
+}
+
+.info-list .wide {
+  grid-column: 1 / -1;
+}
+
+.funding-items li:first-child {
+  padding-top: 0;
+}
+
+.project .project-links {
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.project-links span {
+  padding: 2px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.pub-section > p {
+  margin-top: 0;
+}
+
+.funding-items p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.recent-list {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 20px;
+}
+
+.recent-list h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.recent-list h3 a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+.home-section + .home-section {
+  padding-top: 0;
+}
+
+@media (min-width: 861px) {
+  .pub-section,
+  .funding-list,
+  .project {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 56px;
+    align-items: start;
+  }
+
+  .pub-section > *,
+  .funding-list > *,
+  .project > * {
+    grid-column: 2;
+  }
+
+  .pub-section > h2,
+  .funding-list > .section-head,
+  .project > .tag {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    position: sticky;
+    top: 24px;
+    margin: 0;
+  }
+
+  .project > .tag {
+    padding-top: 0.5em;
+  }
+}
+
+@media (max-width: 780px) {
+  .info-list {
+    grid-template-columns: 1fr;
+  }
+
+  .nowrap {
+    white-space: normal;
+  }
+
+  .timeline-list li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
 /* Responsive */
 
 @media (max-width: 860px) {
